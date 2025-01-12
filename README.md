@@ -4,15 +4,17 @@ The goal of this project is to make a machine learning model that takes in an im
 
 # Framework
 
-For this project we intend to use the pytorch image model
+For this project we intend to use the pytorch image model (timm)
 
 # Descrioption of data
 
-The data consists of 26000 images of 1000 different pokémon. Each image is a 128x128 pixel PNG file, some are in black and white and some are in color. The data can be found at the [link](https://www.kaggle.com/datasets/noodulz/pokemon-dataset-1000/data)
+The data consists of 26000+ images of 1000 different pokémon. Each image is a 128x128 pixel PNG file, some are in black and white and some are in color. The data can be found at the [link](https://www.kaggle.com/datasets/noodulz/pokemon-dataset-1000/data). 
+
+The data is divided into different folders of training, testing and validation images of the different pokemons. Each of theese folders then have subfolders each with images of a said pokemon. 
 
 # Model
 
-We intend to use a nural network that take in a 18.384 input, uses ReLu as the activation function and has a output size of 1000 to match the number of different pokemon. For the propabability distribution we use the softmax function
+We intend to use a neural network based on the ResNet network from the framwork timm, as this model has shown to be usefull in other projects with data like ours. This is our current idea, but as we are not very familiar with theese kind of models our aproach may change later.
 
 # Members of the group
 The members in the group are:  
