@@ -64,9 +64,9 @@ def preprocess(raw_data_path: Path, output_folder: Path) -> None:
     save(validation_data, f"{output_folder}/validation_data.pt")
 
 def pokemon_data():
-    """Return train and test datasets for corrupt MNIST."""
-    train_set = torch.load("data/processed/test_data.pt")
-    test_set = torch.load("data/processed/train_data.pt")
+    """Return train and test datasets for pokemon classification."""
+    train_set = torch.load("data/processed/train_data.pt")
+    test_set = torch.load("data/processed/test_data.pt")
 
     return train_set, test_set
 
