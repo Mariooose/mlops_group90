@@ -7,6 +7,7 @@ from torchvision.io import read_image
 import typer
 from torch.utils.data import Dataset
 from torch import save
+import torch
 
 def create_dataframe(directory: Path) -> pd.DataFrame:
     "create a dataframe for data"
@@ -55,6 +56,14 @@ def preprocess(raw_data_path: Path, output_folder: Path) -> None:
     save(train_data, f"{output_folder}/train_data.pt")
     save(validation_data, f"{output_folder}/validation_data.pt")
 
+def pokemon_data():
+    """Return train and test datasets for corrupt MNIST."""
+    train_set = torch.load("data/processed/test_data.pt")
+    test_set = torch.load("data/processed/train_data.pt")
+
+    return train_set, test_set
+
 
 if __name__ == "__main__":
     typer.run(preprocess)
+    #pokemon_data()
