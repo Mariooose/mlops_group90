@@ -19,8 +19,9 @@ def create_dataframe(directory: Path) -> pd.DataFrame:
     for subdir, dirs, files in os.walk(directory):
         label = os.path.basename(subdir)  # Assuming folder name is the label
         for file in files:
-            img_path = os.path.join(subdir, file)
-            data.append((img_path, label))
+            if file != ".DS_Store":
+                img_path = os.path.join(subdir, file)
+                data.append((img_path, label))
     
     df = pd.DataFrame(data, columns=['image_path', 'label'])
     df = shuffle(df).reset_index(drop=True)
@@ -39,6 +40,7 @@ class PokemonDataset(Dataset):
 
     def __getitem__(self, idx):
         img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 0])
+        #print(img_path)
         image = decode_image(img_path, mode="RGB").type(torch.float32)
         label = self.img_labels.iloc[idx, 1]
         if self.transform:
