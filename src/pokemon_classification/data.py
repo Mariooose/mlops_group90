@@ -1,18 +1,19 @@
-from pathlib import Path
 import os
+import pickle
+from pathlib import Path
+
 import pandas as pd
+import torch
+import typer
+from PIL import Image
 from sklearn.utils import shuffle
+from torch import save
+from torch.utils.data import Dataset
 from torchvision.io import decode_image
 
-import typer
-from torch.utils.data import Dataset
-from torch import save
-import torch
-import pickle
-from PIL import Image
-
-with open('pokemon_to_int.pkl', 'rb') as f:
+with open("pokemon_to_int.pkl", "rb") as f:
     pokemon_to_int = pickle.load(f)
+
 
 def create_dataframe(directory: Path) -> pd.DataFrame:
     "create a dataframe for data"
@@ -23,11 +24,11 @@ def create_dataframe(directory: Path) -> pd.DataFrame:
             if file != ".DS_Store":
                 img_path = os.path.join(subdir, file)
                 data.append((img_path, label))
-                #open and save image again without an icc profile to fix issue with broken profiles
+                # open and save image again without an icc profile to fix issue with broken profiles
                 img = Image.open(img_path)
-                img.save(img_path,format="PNG",icc_profile=None)
-    
-    df = pd.DataFrame(data, columns=['image_path', 'label'])
+                img.save(img_path, format="PNG", icc_profile=None)
+
+    df = pd.DataFrame(data, columns=["image_path", "label"])
     df = shuffle(df).reset_index(drop=True)
     return df
 
@@ -44,7 +45,7 @@ class PokemonDataset(Dataset):
 
     def __getitem__(self, idx):
         img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 0])
-        #print(img_path)
+        # print(img_path)
         image = decode_image(img_path, mode="RGB").type(torch.float32)
         label = self.img_labels.iloc[idx, 1]
         if self.transform:
@@ -60,12 +61,13 @@ def preprocess(raw_data_path: Path, output_folder: Path) -> None:
     test_frame = create_dataframe(f"{raw_data_path}/test")
     train_frame = create_dataframe(f"{raw_data_path}/train")
     validation_frame = create_dataframe(f"{raw_data_path}/val")
-    test_data = PokemonDataset(test_frame,f"{raw_data_path}/test")
-    train_data = PokemonDataset(train_frame,f"{raw_data_path}/train")
-    validation_data = PokemonDataset(validation_frame,f"{raw_data_path}/val")
+    test_data = PokemonDataset(test_frame, f"{raw_data_path}/test")
+    train_data = PokemonDataset(train_frame, f"{raw_data_path}/train")
+    validation_data = PokemonDataset(validation_frame, f"{raw_data_path}/val")
     save(test_data, f"{output_folder}/test_data.pt")
     save(train_data, f"{output_folder}/train_data.pt")
     save(validation_data, f"{output_folder}/validation_data.pt")
+
 
 def pokemon_data():
     """Return train and test datasets for pokemon classification."""
@@ -77,4 +79,4 @@ def pokemon_data():
 
 if __name__ == "__main__":
     typer.run(preprocess)
-    #pokemon_data()
+    # pokemon_data()
