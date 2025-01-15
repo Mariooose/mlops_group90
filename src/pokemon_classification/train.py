@@ -3,6 +3,7 @@ import torch
 import typer
 from data import pokemon_data
 from model import MyAwesomeModel
+from data import PokemonDataset
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
