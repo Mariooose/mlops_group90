@@ -1,6 +1,7 @@
 import torch
 import typer
 from data import pokemon_data
+from data import PokemonDataset
 from model import MyAwesomeModel
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
@@ -12,7 +13,9 @@ def evaluate(model_checkpoint: str) -> None:
     print(model_checkpoint)
 
     model = MyAwesomeModel().to(DEVICE)
-    model.load_state_dict(torch.load(model_checkpoint))
+    model.load_state_dict(torch.load('models/model.pth', map_location=DEVICE))
+    state_dict = torch.load('models/model.pth')
+    print(type(state_dict))
 
     _, test_set = pokemon_data()
     test_dataloader = torch.utils.data.DataLoader(test_set, batch_size=32)
