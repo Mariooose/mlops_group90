@@ -2,12 +2,16 @@ from pathlib import Path
 import os
 import pandas as pd
 from sklearn.utils import shuffle
-from torchvision.io import read_image
+from torchvision.io import decode_image
 
 import typer
 from torch.utils.data import Dataset
 from torch import save
 import torch
+import pickle
+
+with open('pokemon_to_int.pkl', 'rb') as f:
+    pokemon_to_int = pickle.load(f)
 
 def create_dataframe(directory: Path) -> pd.DataFrame:
     "create a dataframe for data"
@@ -35,12 +39,13 @@ class PokemonDataset(Dataset):
 
     def __getitem__(self, idx):
         img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 0])
-        image = read_image(img_path)
+        image = decode_image(img_path, mode="RGB").unsqueeze(0)
         label = self.img_labels.iloc[idx, 1]
         if self.transform:
             image = self.transform(image)
         if self.target_transform:
             label = self.target_transform(label)
+        label = pokemon_to_int[label]
         return image, label
 
 
