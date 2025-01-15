@@ -9,6 +9,7 @@ from torch.utils.data import Dataset
 from torch import save
 import torch
 import pickle
+from PIL import Image
 
 with open('pokemon_to_int.pkl', 'rb') as f:
     pokemon_to_int = pickle.load(f)
@@ -22,6 +23,9 @@ def create_dataframe(directory: Path) -> pd.DataFrame:
             if file != ".DS_Store":
                 img_path = os.path.join(subdir, file)
                 data.append((img_path, label))
+                #open and save image again without an icc profile to fix issue with broken profiles
+                img = Image.open(img_path)
+                img.save(img_path,format="PNG",icc_profile=None)
     
     df = pd.DataFrame(data, columns=['image_path', 'label'])
     df = shuffle(df).reset_index(drop=True)
