@@ -7,10 +7,9 @@ from model import MyAwesomeModel
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 
-def evaluate(model_checkpoint: str) -> None:
+def evaluate() -> None:
     """Evaluate a trained model."""
     print("Evaluating pokemon model...")
-    print(model_checkpoint)
 
     model = MyAwesomeModel().to(DEVICE)
     model.load_state_dict(torch.load('models/model.pth', map_location=DEVICE))
