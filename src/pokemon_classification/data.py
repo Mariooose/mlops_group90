@@ -24,9 +24,7 @@ def create_dataframe(directory: Path) -> pd.DataFrame:
             if file != ".DS_Store":
                 img_path = os.path.join(subdir, file)
                 data.append((img_path, label))
-                # open and save image again without an icc profile to fix issue with broken profiles
-                img = Image.open(img_path)
-                img.save(img_path, format="PNG", icc_profile=None)
+
 
     df = pd.DataFrame(data, columns=["image_path", "label"])
     df = shuffle(df).reset_index(drop=True)
@@ -61,22 +59,22 @@ def preprocess(raw_data_path: Path, output_folder: Path) -> None:
     test_frame = create_dataframe(f"{raw_data_path}/test")
     train_frame = create_dataframe(f"{raw_data_path}/train")
     validation_frame = create_dataframe(f"{raw_data_path}/val")
-    test_data = PokemonDataset(test_frame, f"{raw_data_path}/test")
-    train_data = PokemonDataset(train_frame, f"{raw_data_path}/train")
-    validation_data = PokemonDataset(validation_frame, f"{raw_data_path}/val")
-    save(test_data, f"{output_folder}/test_data.pt")
-    save(train_data, f"{output_folder}/train_data.pt")
-    save(validation_data, f"{output_folder}/validation_data.pt")
+
+    test_frame.to_csv(f"{output_folder}/test_frame.csv",index=False)
+    train_frame.to_csv(f"{output_folder}/train_frame.csv",index=False)
+    validation_frame.to_csv(f"{output_folder}/validation_frame.csv",index=False)
 
 
 def pokemon_data():
     """Return train and test datasets for pokemon classification."""
-    train_set = torch.load("data/processed/train_data.pt")
-    test_set = torch.load("data/processed/test_data.pt")
+    train_frame = pd.read_csv("data/processed/train_frame.csv")
+    test_frame = pd.read_csv("data/processed/test_frame.csv")
+
+    train_set = PokemonDataset(train_frame,"")
+    test_set = PokemonDataset(test_frame,"")
 
     return train_set, test_set
 
 
 if __name__ == "__main__":
     typer.run(preprocess)
-    # pokemon_data()

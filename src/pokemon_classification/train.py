@@ -3,12 +3,12 @@ import torch
 import typer
 from model import MyAwesomeModel
 
-from data import PokemonDataset, pokemon_data
+from data import pokemon_data
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 
-def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
+def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 1) -> None:
     """Train a model on pokemon."""
     print("training")
     print(f"{lr=}, {batch_size=}, {epochs=}")
