@@ -116,7 +116,7 @@ pillow==11.1.0
 pipreqs==0.5.0
 platformdirs==4.3.6
 pluggy==1.5.0
--e git+https://github.com/Mariooose/mlops_group90.git@a0ff50d0c0faaa6f1ddca9844d0b031d8311ea3a#egg=pokemon_classification
+-e .[pokemon_classification]
 prompt_toolkit==3.0.48
 propcache==0.2.1
 proto-plus==1.25.0
