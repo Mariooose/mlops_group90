@@ -12,6 +12,8 @@ COPY requirements.txt requirements.txt
 COPY pyproject.toml pyproject.toml
 COPY src/pokemon_classification/ src/pokemon_classification/
 COPY data/ data/
+COPY pokemon_to_int.pkl pokemon_to_int.pkl
+COPY data/processed/ data/processed/
 
 #working directory
 
