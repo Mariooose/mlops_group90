@@ -20,12 +20,6 @@ src_path = os.path.join(project_root, "src")
 if src_path not in sys.path:
     sys.path.insert(0, src_path)
 
-
-
-def download_data_from_gdrive():
-    fs = dvc.api.DVCFileSystem(".")
-    fs.get("data",".",recursive=True)
-
 with open("pokemon_to_int.pkl", "rb") as f:
     pokemon_to_int = pickle.load(f)
 
@@ -69,11 +63,6 @@ class PokemonDataset(Dataset):
 
 
 def preprocess(raw_data_path: Path, output_folder: Path, download_data=False) -> None:
-    if download_data:
-        print("Downloading data...")
-        download_data_from_gdrive()
-        print("Download done")
-    
     print("Preprocessing data...")
     test_frame = create_dataframe(f"{raw_data_path}/test")
     train_frame = create_dataframe(f"{raw_data_path}/train")

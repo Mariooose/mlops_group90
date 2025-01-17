@@ -16,7 +16,7 @@ if src_path not in sys.path:
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 
-def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 1) -> None:
+def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
     """Train a model on pokemon."""
     print("training")
     print(f"{lr=}, {batch_size=}, {epochs=}")
