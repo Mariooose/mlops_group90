@@ -1,0 +1,32 @@
+import torch
+from src.pokemon_classification.model import MyAwesomeModel
+from src.pokemon_classification.data import pokemon_data, PokemonDataset
+from torch.profiler import profile, ProfilerActivity,tensorboard_trace_handler
+
+# Register custom class for safe deserialization
+torch.serialization.add_safe_globals({'PokemonDataset': PokemonDataset})
+
+print("Profiling model...")
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+
+model = MyAwesomeModel().to(DEVICE)
+model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE))
+model.eval()
+
+_, test_set = pokemon_data()
+test_dataloader = torch.utils.data.DataLoader(test_set, batch_size=32)
+
+# Profiling
+with profile(
+    activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA] if DEVICE.type == "cuda" else [ProfilerActivity.CPU],
+    record_shapes=True,
+    with_stack=True,
+    on_trace_ready=tensorboard_trace_handler("./log/resnet18")
+) as prof:
+    with torch.no_grad():
+        for batch in test_dataloader:
+            inputs, labels = batch
+            inputs = inputs.to(DEVICE)
+            outputs = model(inputs)
+
+print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))

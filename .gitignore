@@ -5,4 +5,5 @@ data/processed/validation_data.pt
 models/model.pth
 reports/figures/training_statistics.png
 src/pokemon_classification/__pycache__/
-data
+data/raw/*
+log/resnet18/
