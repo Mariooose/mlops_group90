@@ -1,5 +1,4 @@
 [core]
-    remote = remote_storage
-['remote "remote_storage"']
-    url = gs://exam_bucket_mlops
-    version_aware = true
+    remote = storage
+['remote "storage"']
+    url = gs://exam_bucket_mlops/
