@@ -2,7 +2,6 @@
 data/processed/test_data.pt
 data/processed/train_data.pt
 data/processed/validation_data.pt
-models/model.pth
 reports/figures/training_statistics.png
 src/pokemon_classification/__pycache__/
 data/raw/*
