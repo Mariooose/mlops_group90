@@ -98,3 +98,4 @@ uvicorn==0.34.0
 wcwidth==0.2.13
 webencodings==0.5.1
 yarg==0.1.9
+-e git+https://github.com/Mariooose/mlops_group90.git@ddb206fbe840aca27f61bbd8ab0fa2ff4a50793c#egg=pokemon_classification
