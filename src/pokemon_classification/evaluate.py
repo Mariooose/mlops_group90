@@ -1,8 +1,8 @@
 import torch
 import typer
-from model import MyAwesomeModel
+from pokemon_classification.model import MyAwesomeModel
 
-from data import PokemonDataset, pokemon_data
+from pokemon_classification.data import PokemonDataset, pokemon_data
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
