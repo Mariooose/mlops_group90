@@ -11,6 +11,16 @@ from torch import save
 from torch.utils.data import Dataset
 from torchvision.io import decode_image
 import dvc.api
+import sys
+import os
+
+# Dynamically add the src/ directory to sys.path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # This gets the repository root
+src_path = os.path.join(project_root, "src")
+if src_path not in sys.path:
+    sys.path.insert(0, src_path)
+
+
 
 def download_data_from_gdrive():
     fs = dvc.api.DVCFileSystem(".")

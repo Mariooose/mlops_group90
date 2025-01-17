@@ -13,6 +13,7 @@ src/pokemon_classification/visualize.py
 src/pokemon_classification.egg-info/PKG-INFO
 src/pokemon_classification.egg-info/SOURCES.txt
 src/pokemon_classification.egg-info/dependency_links.txt
+src/pokemon_classification.egg-info/entry_points.txt
 src/pokemon_classification.egg-info/requires.txt
 src/pokemon_classification.egg-info/top_level.txt
 tests/test_api.py

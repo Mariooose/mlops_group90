@@ -13,8 +13,8 @@ model = MyAwesomeModel().to(DEVICE)
 model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE))
 model.eval()
 
-_, test_set = pokemon_data()
-test_dataloader = torch.utils.data.DataLoader(test_set, batch_size=32)
+train_set, test_set = pokemon_data()
+test_dataloader = torch.utils.data.DataLoader(train_set, batch_size=32)
 
 # Profiling
 with profile(

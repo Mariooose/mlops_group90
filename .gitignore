@@ -4,5 +4,7 @@ data/processed/train_data.pt
 data/processed/validation_data.pt
 reports/figures/training_statistics.png
 src/pokemon_classification/__pycache__/
-data/raw/*
+src/pokemon_classification.egg-info/entry_points.txt
+data/
 log/resnet18/
+mathilde.py
