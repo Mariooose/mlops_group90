@@ -1,9 +1,17 @@
 import matplotlib.pyplot as plt
 import torch
 import typer
-from model import MyAwesomeModel
+from pokemon_classification.model import MyAwesomeModel
 
-from data import pokemon_data
+from pokemon_classification.data import pokemon_data
+import sys
+import os
+
+# Dynamically add the src/ directory to sys.path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # This gets the repository root
+src_path = os.path.join(project_root, "src")
+if src_path not in sys.path:
+    sys.path.insert(0, src_path)
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
@@ -49,5 +57,8 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 1) -> None:
     fig.savefig("reports/figures/training_statistics.png")
 
 
-if __name__ == "__main__":
+def main():
     typer.run(train)
+
+if __name__ == "__main__":
+    main()

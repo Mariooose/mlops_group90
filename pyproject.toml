@@ -37,4 +37,11 @@ lint = {select =["I"]}
 [tool.coverage.run]
 omit = ["tests/*"]
 
+[project.scripts]
+train = "pokemon_classification.train:main"
+evaluate = "pokemon_classification.evaluate:main"
 
+[tool.poetry]
+name = "mlops_group90"
+version = "0.1.0"
+packages = [{include = "pokemon_classification", from = "src"}]
