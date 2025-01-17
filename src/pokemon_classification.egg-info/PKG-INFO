@@ -1,0 +1,197 @@
+Metadata-Version: 2.2
+Name: pokemon_classification
+Version: 0.0.1
+Summary: A classification model for classifying pokemon
+Author-email: group90 <your@email.com>
+Keywords: machine learning,MLOps
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: annotated-types==0.7.0
+Requires-Dist: anyio==4.8.0
+Requires-Dist: appnope==0.1.4
+Requires-Dist: asttokens==3.0.0
+Requires-Dist: attrs==24.3.0
+Requires-Dist: backcall==0.2.0
+Requires-Dist: beautifulsoup4==4.12.3
+Requires-Dist: bleach==6.2.0
+Requires-Dist: certifi==2024.12.14
+Requires-Dist: charset-normalizer==3.4.1
+Requires-Dist: click==8.1.8
+Requires-Dist: contourpy==1.3.1
+Requires-Dist: cycler==0.12.1
+Requires-Dist: decorator==5.1.1
+Requires-Dist: defusedxml==0.7.1
+Requires-Dist: docopt==0.6.2
+Requires-Dist: executing==2.1.0
+Requires-Dist: fastapi==0.115.6
+Requires-Dist: fastjsonschema==2.21.1
+Requires-Dist: filelock==3.16.1
+Requires-Dist: fonttools==4.55.3
+Requires-Dist: fsspec==2024.12.0
+Requires-Dist: h11==0.14.0
+Requires-Dist: idna==3.10
+Requires-Dist: invoke==2.2.0
+Requires-Dist: ipython==8.12.3
+Requires-Dist: jedi==0.19.2
+Requires-Dist: Jinja2==3.1.5
+Requires-Dist: joblib==1.4.2
+Requires-Dist: jsonschema==4.23.0
+Requires-Dist: jsonschema-specifications==2024.10.1
+Requires-Dist: jupyter_client==8.6.3
+Requires-Dist: jupyter_core==5.7.2
+Requires-Dist: jupyterlab_pygments==0.3.0
+Requires-Dist: kagglehub==0.3.6
+Requires-Dist: kiwisolver==1.4.8
+Requires-Dist: loguru==0.7.3
+Requires-Dist: Markdown==3.7
+Requires-Dist: markdown-it-py==3.0.0
+Requires-Dist: MarkupSafe==3.0.2
+Requires-Dist: matplotlib==3.10.0
+Requires-Dist: matplotlib-inline==0.1.7
+Requires-Dist: mdurl==0.1.2
+Requires-Dist: mistune==3.1.0
+Requires-Dist: mpmath==1.3.0
+Requires-Dist: mypy==1.14.1
+Requires-Dist: mypy-extensions==1.0.0
+Requires-Dist: nbclient==0.10.2
+Requires-Dist: nbconvert==7.16.5
+Requires-Dist: nbformat==5.10.4
+Requires-Dist: networkx==3.4.2
+Requires-Dist: numpy==1.26.4
+Requires-Dist: packaging==24.2
+Requires-Dist: pandas==2.0.3
+Requires-Dist: pandocfilters==1.5.1
+Requires-Dist: parso==0.8.4
+Requires-Dist: pexpect==4.9.0
+Requires-Dist: pickleshare==0.7.5
+Requires-Dist: pillow==11.1.0
+Requires-Dist: pipreqs==0.5.0
+Requires-Dist: platformdirs==4.3.6
+Requires-Dist: prompt_toolkit==3.0.48
+Requires-Dist: ptyprocess==0.7.0
+Requires-Dist: pure_eval==0.2.3
+Requires-Dist: pydantic==2.10.5
+Requires-Dist: pydantic_core==2.27.2
+Requires-Dist: Pygments==2.19.1
+Requires-Dist: pyparsing==3.2.1
+Requires-Dist: python-dateutil==2.9.0.post0
+Requires-Dist: pytz==2024.2
+Requires-Dist: pyzmq==26.2.0
+Requires-Dist: referencing==0.35.1
+Requires-Dist: requests==2.32.3
+Requires-Dist: rich==13.9.4
+Requires-Dist: rpds-py==0.22.3
+Requires-Dist: ruff==0.9.1
+Requires-Dist: scikit-learn==1.3.0
+Requires-Dist: scipy==1.15.1
+Requires-Dist: shellingham==1.5.4
+Requires-Dist: six==1.17.0
+Requires-Dist: sniffio==1.3.1
+Requires-Dist: soupsieve==2.6
+Requires-Dist: stack-data==0.6.3
+Requires-Dist: starlette==0.41.3
+Requires-Dist: sympy==1.13.1
+Requires-Dist: threadpoolctl==3.5.0
+Requires-Dist: tinycss2==1.4.0
+Requires-Dist: torch==2.5.1
+Requires-Dist: torchvision==0.20.1
+Requires-Dist: tornado==6.4.2
+Requires-Dist: tqdm==4.67.1
+Requires-Dist: traitlets==5.14.3
+Requires-Dist: typer==0.15.1
+Requires-Dist: typing_extensions==4.12.2
+Requires-Dist: tzdata==2024.2
+Requires-Dist: urllib3==2.3.0
+Requires-Dist: uvicorn==0.34.0
+Requires-Dist: wcwidth==0.2.13
+Requires-Dist: webencodings==0.5.1
+Requires-Dist: yarg==0.1.9
+Provides-Extra: dev
+Requires-Dist: invoke==2.2.0; extra == "dev"
+Requires-Dist: pre-commit==3.5.0; extra == "dev"
+Requires-Dist: pytest==7.4.3; extra == "dev"
+Requires-Dist: coverage==7.6.9; extra == "dev"
+Requires-Dist: ruff==0.1.3; extra == "dev"
+Requires-Dist: mkdocs==1.5.3; extra == "dev"
+Requires-Dist: mkdocs-material==9.4.6; extra == "dev"
+Requires-Dist: mkdocstrings-python==1.12.2; extra == "dev"
+
+# pokemon_classification
+
+The goal of this project is to make a machine learning model that takes in an image of a pokemon and classifies the pokemon.
+
+# Framework
+
+For this project we intend to use the pytorch image model (timm)
+
+# Descrioption of data
+
+The data consists of 26000+ images of 1000 different pokémon. Each image is a 128x128 pixel PNG file, some are in black and white and some are in color. The data can be found at the [link](https://www.kaggle.com/datasets/noodulz/pokemon-dataset-1000/data). 
+
+The data is divided into different folders of training, testing and validation images of the different pokemons. Each of theese folders then have subfolders each with images of a said pokemon. 
+
+# Model
+
+We intend to use a neural network based on the ResNet network from the framwork timm, as this model has shown to be usefull in other projects with data like ours. This is our current idea, but as we are not very familiar with theese kind of models our aproach may change later.
+
+# Members of the group
+The members in the group are:  
+-s224388  
+-s224360  
+-s224401  
+
+
+## Project structure
+
+The directory structure of the project looks like this:
+```txt
+├── .github/                  # Github actions and dependabot
+│   ├── dependabot.yaml
+│   └── workflows/
+│       └── tests.yaml
+├── configs/                  # Configuration files
+├── data/                     # Data directory
+│   ├── processed
+│   └── raw
+├── dockerfiles/              # Dockerfiles
+│   ├── api.Dockerfile
+│   └── train.Dockerfile
+├── docs/                     # Documentation
+│   ├── mkdocs.yml
+│   └── source/
+│       └── index.md
+├── models/                   # Trained models
+├── notebooks/                # Jupyter notebooks
+├── reports/                  # Reports
+│   └── figures/
+├── src/                      # Source code
+│   ├── project_name/
+│   │   ├── __init__.py
+│   │   ├── api.py
+│   │   ├── data.py
+│   │   ├── evaluate.py
+│   │   ├── models.py
+│   │   ├── train.py
+│   │   └── visualize.py
+└── tests/                    # Tests
+│   ├── __init__.py
+│   ├── test_api.py
+│   ├── test_data.py
+│   └── test_model.py
+├── .gitignore
+├── .pre-commit-config.yaml
+├── LICENSE
+├── pyproject.toml            # Python project file
+├── README.md                 # Project README
+├── requirements.txt          # Project requirements
+├── requirements_dev.txt      # Development requirements
+└── tasks.py                  # Project tasks
+```
+
+
+Created using [mlops_template](https://github.com/SkafteNicki/mlops_template),
+a [cookiecutter template](https://github.com/cookiecutter/cookiecutter) for getting
+started with Machine Learning Operations (MLOps).

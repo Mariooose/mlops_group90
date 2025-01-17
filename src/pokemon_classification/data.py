@@ -10,6 +10,11 @@ from sklearn.utils import shuffle
 from torch import save
 from torch.utils.data import Dataset
 from torchvision.io import decode_image
+import dvc.api
+
+def download_data_from_gdrive():
+    fs = dvc.api.DVCFileSystem(".")
+    fs.get("data",".",recursive=True)
 
 with open("pokemon_to_int.pkl", "rb") as f:
     pokemon_to_int = pickle.load(f)
@@ -43,7 +48,6 @@ class PokemonDataset(Dataset):
 
     def __getitem__(self, idx):
         img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 0])
-        # print(img_path)
         image = decode_image(img_path, mode="RGB").type(torch.float32)
         label = self.img_labels.iloc[idx, 1]
         if self.transform:
@@ -54,7 +58,12 @@ class PokemonDataset(Dataset):
         return image, label
 
 
-def preprocess(raw_data_path: Path, output_folder: Path) -> None:
+def preprocess(raw_data_path: Path, output_folder: Path, download_data=False) -> None:
+    if download_data:
+        print("Downloading data...")
+        download_data_from_gdrive()
+        print("Download done")
+    
     print("Preprocessing data...")
     test_frame = create_dataframe(f"{raw_data_path}/test")
     train_frame = create_dataframe(f"{raw_data_path}/train")
