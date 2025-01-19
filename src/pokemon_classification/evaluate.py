@@ -19,8 +19,8 @@ def evaluate() -> None:
     print("Evaluating pokemon model...")
 
     model = MyAwesomeModel().to(DEVICE)
-    model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE))
-    state_dict = torch.load("models/model.pth")
+    model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE, weights_only=True ))
+    state_dict = torch.load("models/model.pth",weights_only=True)
     print(type(state_dict))
 
     _, test_set = pokemon_data()
