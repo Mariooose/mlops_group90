@@ -13,4 +13,4 @@ def test_error_on_wrong_shape():
     with pytest.raises(ValueError, match='Expected input to a 4D tensor'):
         model(torch.randn(1,2,3))
     with pytest.raises(ValueError, match='Expected sample to have shape 4,128,128'):
-        model(torch.randn(1,4,128,129))   
+        model(torch.randn(1,4,128,129))

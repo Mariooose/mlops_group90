@@ -19,7 +19,7 @@ class MyAwesomeModel(nn.Module):
             raise ValueError('Expected input to a 4D tensor')
         if x.shape[1] != 4 or x.shape[2] != 128 or x.shape[3] != 128:
             raise ValueError('Expected sample to have shape 4,128,128')
-        
+
         """Forward pass."""
         x = torch.relu(self.conv1(x))
         x = torch.max_pool2d(x, 2, 2)

@@ -96,7 +96,7 @@ def preprocess(raw_data_path: Path, output_folder: Path, download_data=False) ->
         torch.save(torch.tensor(labels), f"{output_folder}/{data_type}_target.pt") #convert labels into tensor
 
         print(f"processed {data_type}")
-    
+
 
 
 def pokemon_data():

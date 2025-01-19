@@ -51,7 +51,7 @@ def best_and_worst_pred(total, correct, results, targets) -> None:
             best = np.argmax(results[i,:])
         if (np.argmax(results[i,:]) != targets[i] and np.argmax(results[i,:]) < worst):
             worst_index = i
-            worst = np.argmax(results[i,:])   
+            worst = np.argmax(results[i,:])
     return
 
 def main():
