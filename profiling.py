@@ -1,7 +1,7 @@
 import torch
 from src.pokemon_classification.model import MyAwesomeModel
 from src.pokemon_classification.data import pokemon_data, PokemonDataset
-from torch.profiler import profile, ProfilerActivity,tensorboard_trace_handler
+from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
 
 # Register custom class for safe deserialization
 torch.serialization.add_safe_globals({'PokemonDataset': PokemonDataset})
@@ -16,17 +16,17 @@ model.eval()
 train_set, test_set = pokemon_data()
 test_dataloader = torch.utils.data.DataLoader(train_set, batch_size=32)
 
-# Profiling
+# Profiling without using tensorboard-plugin-profile
 with profile(
     activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA] if DEVICE.type == "cuda" else [ProfilerActivity.CPU],
     record_shapes=True,
     with_stack=True,
-    on_trace_ready=tensorboard_trace_handler("./log/resnet18")
 ) as prof:
     with torch.no_grad():
         for batch in test_dataloader:
             inputs, labels = batch
             inputs = inputs.to(DEVICE)
             outputs = model(inputs)
+
 
 print(prof.key_averages().table(sort_by="cpu_time_total", row_limit=10))
