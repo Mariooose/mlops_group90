@@ -27,7 +27,7 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements_tests.txt
         pip install -r requirements_dev.txt
-        pop install dvc-gs
+        pip install dvc-gs
 
     - name: Auth with GCP
       uses: google-github-actions/auth@v2
