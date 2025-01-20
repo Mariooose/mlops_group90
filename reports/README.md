@@ -60,7 +60,7 @@ will check the repositories and the code to verify your answers.
 * [ ] Do a bit of code typing and remember to document essential parts of your code (M7)
 * [x] Setup version control for your data or part of your data (M8)
 * [x] Add command line interfaces and project commands to your code where it makes sense (M9)
-* [ ] Construct one or multiple docker files for your code (M10)
+* [x] Construct one or multiple docker files for your code (M10)
 * [ ] Build the docker files locally and make sure they work as intended (M10)
 * [ ] Write one or multiple configurations files for your experiments (M11)
 * [ ] Used Hydra to load the configurations and manage your hyperparameters (M11)
@@ -78,7 +78,7 @@ will check the repositories and the code to verify your answers.
 * [ ] Get some continuous integration running on the GitHub repository (M17)
 * [x] Add caching and multi-os/python/pytorch testing to your continuous integration (M17)
 * [ ] Add a linting step to your continuous integration (M17)
-* [ ] Add pre-commit hooks to your version control setup (M18)
+* [x] Add pre-commit hooks to your version control setup (M18)
 * [ ] Add a continues workflow that triggers when data changes (M19)
 * [ ] Add a continues workflow that triggers when changes to the model registry is made (M19)
 * [ ] Create a data storage in GCP Bucket for your data and link this with your data version control setup (M21)
@@ -125,7 +125,7 @@ Group 90
 > **Enter the study number for each member in the group**
 >
 > Answer:
-The members in the group are:  s224388  ,s224360   and s224401 
+The members in the group are:  s224388  ,s224360   and s224401
 
 --- question 2 fill here ---
 

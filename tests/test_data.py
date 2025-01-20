@@ -8,7 +8,7 @@ def test_my_dataset():
     """Test the MyDataset class."""
     trainset,testset = pokemon_data()
     print("im here")
-    
+
     #test if train and test sets are of type Dataset
     assert isinstance(trainset, Dataset)
     assert isinstance(testset, Dataset)

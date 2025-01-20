@@ -1,10 +1,17 @@
 import torch
 import typer
 from pokemon_classification.model import MyAwesomeModel
+import os
 
 from pokemon_classification.data import PokemonDataset, pokemon_data
-
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+# Detect if running in Docker
+RUNNING_IN_DOCKER = os.path.exists("/.dockerenv")
+DEVICE = torch.device("cpu")
+#DEVICE = torch.device("cpu" if RUNNING_IN_DOCKER else
+#                      "cuda" if torch.cuda.is_available() else
+ #                     "mps" if torch.backends.mps.is_available() else
+ #                     "cpu")
+##DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 
 def evaluate() -> None:
@@ -12,8 +19,8 @@ def evaluate() -> None:
     print("Evaluating pokemon model...")
 
     model = MyAwesomeModel().to(DEVICE)
-    model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE))
-    state_dict = torch.load("models/model.pth")
+    model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE, weights_only=True ))
+    state_dict = torch.load("models/model.pth",weights_only=True)
     print(type(state_dict))
 
     _, test_set = pokemon_data()

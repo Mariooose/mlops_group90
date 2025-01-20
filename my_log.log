@@ -1,0 +1,10 @@
+2025-01-19 17:00:24.385 | DEBUG    | __main__:example_function:5 - This is a debug message.
+2025-01-19 17:00:24.386 | INFO     | __main__:example_function:6 - This is an informational message.
+2025-01-19 17:00:24.386 | WARNING  | __main__:example_function:7 - This is a warning message.
+2025-01-19 17:00:24.386 | ERROR    | __main__:example_function:8 - This is an error message.
+2025-01-19 17:00:24.386 | CRITICAL | __main__:example_function:9 - This is a critical message.
+2025-01-19 17:01:07.329 | DEBUG    | __main__:example_function:5 - This is a debug message.
+2025-01-19 17:01:07.330 | INFO     | __main__:example_function:6 - This is an informational message.
+2025-01-19 17:01:07.330 | WARNING  | __main__:example_function:7 - This is a warning message.
+2025-01-19 17:01:07.330 | ERROR    | __main__:example_function:8 - This is an error message.
+2025-01-19 17:01:07.330 | CRITICAL | __main__:example_function:9 - This is a critical message.
