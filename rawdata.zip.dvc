@@ -1,0 +1,9 @@
+outs:
+- md5: 5c4abc1e9a7bef401fdc51608630f596
+  size: 408531965
+  hash: md5
+  path: rawdata.zip
+  cloud:
+    remote_storage:
+      etag: 08a4ead883e5fc8a031001
+      version_id: '1737118052660516'
