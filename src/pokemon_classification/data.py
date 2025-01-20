@@ -13,14 +13,11 @@ from torchvision.io import decode_image
 import dvc.api
 import sys
 import os
+from my_logger import logger  # Import the logger
 
-# Dynamically add the src/ directory to sys.path
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # This gets the repository root
-src_path = os.path.join(project_root, "src")
-if src_path not in sys.path:
-    sys.path.insert(0, src_path)
 
 #Read pokemon_to_int dictiionary that converts a label to a number
+logger.info("Reading pokemon_to_int.pkl")
 with open("pokemon_to_int.pkl", "rb") as f:
     pokemon_to_int = pickle.load(f)
 
@@ -69,6 +66,7 @@ class PokemonDataset(Dataset):
 
 def preprocess(raw_data_path: Path, output_folder: Path, download_data=False) -> None:
     print("Preprocessing data...")
+    logger.info("Preprocessing data")
     test_frame = create_dataframe(f"{raw_data_path}/test")
     train_frame = create_dataframe(f"{raw_data_path}/train")
     validation_frame = create_dataframe(f"{raw_data_path}/val")
@@ -96,11 +94,13 @@ def preprocess(raw_data_path: Path, output_folder: Path, download_data=False) ->
         torch.save(torch.tensor(labels), f"{output_folder}/{data_type}_target.pt") #convert labels into tensor
 
         print(f"processed {data_type}")
+        logger.success(f"Processed {data_type}")
 
 
 
 def pokemon_data():
     """Return train and test datasets for pokemon classification."""
+    logger.info("Loading data via pokemon_data()...")
     train_images = torch.load("data/processed/train_images.pt",weights_only=True)
     train_target = torch.load("data/processed/train_target.pt",weights_only=True)
     test_images = torch.load("data/processed/test_images.pt",weights_only=True)
@@ -108,7 +108,7 @@ def pokemon_data():
 
     train_set = torch.utils.data.TensorDataset(train_images, train_target)
     test_set = torch.utils.data.TensorDataset(test_images, test_target)
-
+    logger.success("Data loaded successfully")
     return train_set, test_set
 
 

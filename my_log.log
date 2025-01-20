@@ -1,10 +1,63 @@
-2025-01-19 17:00:24.385 | DEBUG    | __main__:example_function:5 - This is a debug message.
-2025-01-19 17:00:24.386 | INFO     | __main__:example_function:6 - This is an informational message.
-2025-01-19 17:00:24.386 | WARNING  | __main__:example_function:7 - This is a warning message.
-2025-01-19 17:00:24.386 | ERROR    | __main__:example_function:8 - This is an error message.
-2025-01-19 17:00:24.386 | CRITICAL | __main__:example_function:9 - This is a critical message.
-2025-01-19 17:01:07.329 | DEBUG    | __main__:example_function:5 - This is a debug message.
-2025-01-19 17:01:07.330 | INFO     | __main__:example_function:6 - This is an informational message.
-2025-01-19 17:01:07.330 | WARNING  | __main__:example_function:7 - This is a warning message.
-2025-01-19 17:01:07.330 | ERROR    | __main__:example_function:8 - This is an error message.
-2025-01-19 17:01:07.330 | CRITICAL | __main__:example_function:9 - This is a critical message.
+2025-01-20 14:39:08.701 | INFO     | pokemon_classification.data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-20 14:39:08.736 | INFO     | pokemon_classification.evaluate:evaluate:21 - Evaluating pokemon model - fetching model
+2025-01-20 14:39:09.061 | INFO     | pokemon_classification.evaluate:evaluate:28 - Loading test set
+2025-01-20 14:39:09.061 | INFO     | pokemon_classification.data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-20 14:39:11.660 | SUCCESS  | pokemon_classification.data:pokemon_data:111 - Data loaded successfully
+2025-01-20 14:39:14.251 | SUCCESS  | pokemon_classification.evaluate:evaluate:39 - Evalution done!
+ Test accuracy: 0.870330348873109
+2025-01-20 14:48:10.085 | INFO     | pokemon_classification.data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-20 14:48:10.109 | INFO     | pokemon_classification.train:train:17 - Training started
+2025-01-20 14:48:10.109 | DEBUG    | pokemon_classification.train:train:19 - lr=0.001, batch_size=32, epochs=10
+2025-01-20 14:48:10.110 | INFO     | pokemon_classification.train:train:21 - Fetching model and training data
+2025-01-20 14:48:10.368 | INFO     | pokemon_classification.data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-20 14:48:12.877 | SUCCESS  | pokemon_classification.data:pokemon_data:111 - Data loaded successfully
+2025-01-20 14:49:51.961 | INFO     | pokemon_classification.data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-20 14:49:51.988 | INFO     | pokemon_classification.train:train:17 - Training started
+2025-01-20 14:49:51.988 | DEBUG    | pokemon_classification.train:train:19 - lr=0.001, batch_size=32, epochs=10
+2025-01-20 14:49:51.988 | INFO     | pokemon_classification.train:train:21 - Fetching model and training data
+2025-01-20 14:49:52.105 | INFO     | pokemon_classification.data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-20 14:49:54.110 | SUCCESS  | pokemon_classification.data:pokemon_data:111 - Data loaded successfully
+2025-01-20 14:50:34.976 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 0 done
+2025-01-20 14:51:16.041 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 1 done
+2025-01-20 14:51:57.512 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 2 done
+2025-01-20 14:52:38.209 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 3 done
+2025-01-20 14:53:18.550 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 4 done
+2025-01-20 14:53:59.315 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 5 done
+2025-01-20 14:54:39.570 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 6 done
+2025-01-20 14:55:20.005 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 7 done
+2025-01-20 14:56:01.137 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 8 done
+2025-01-20 14:56:43.757 | SUCCESS  | pokemon_classification.train:train:49 - Epoch 9 done
+2025-01-20 14:56:43.758 | SUCCESS  | pokemon_classification.train:train:52 - Training complete
+2025-01-20 15:00:33.982 | INFO     | data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-20 15:00:34.387 | INFO     | data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-20 15:00:36.675 | SUCCESS  | data:pokemon_data:111 - Data loaded successfully
+2025-01-20 15:05:45.619 | INFO     | data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-20 15:05:46.123 | INFO     | data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-20 15:05:48.068 | SUCCESS  | data:pokemon_data:111 - Data loaded successfully
+2025-01-20 15:15:49.759 | INFO     | data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-20 15:15:49.791 | INFO     | __main__:visualize:17 - Visualizing pokemon model - fetching model
+2025-01-20 15:15:50.159 | INFO     | __main__:visualize:21 - Loading test data
+2025-01-20 15:15:50.160 | INFO     | data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-20 15:15:52.563 | SUCCESS  | data:pokemon_data:111 - Data loaded successfully
+2025-01-20 15:19:36.980 | INFO     | data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-20 15:19:37.000 | INFO     | __main__:visualize:17 - Visualizing pokemon model - fetching model
+2025-01-20 15:19:37.330 | INFO     | __main__:visualize:21 - Loading test data
+2025-01-20 15:19:37.331 | INFO     | data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-20 15:19:39.525 | SUCCESS  | data:pokemon_data:111 - Data loaded successfully
+2025-01-20 15:20:41.921 | INFO     | data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-20 15:20:41.940 | INFO     | __main__:visualize:17 - Visualizing pokemon model - fetching model
+2025-01-20 15:20:42.080 | INFO     | __main__:visualize:21 - Loading test data
+2025-01-20 15:20:42.080 | INFO     | data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-20 15:20:44.093 | SUCCESS  | data:pokemon_data:111 - Data loaded successfully
+2025-01-20 15:21:04.593 | INFO     | __main__:visualize:60 - Visualizing analysis done!
+2025-01-20 15:21:04.598 | INFO     | __main__:visualize:61 - Creating best and worst prediction...
+2025-01-20 15:22:44.700 | INFO     | data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-20 15:22:44.723 | INFO     | __main__:visualize:17 - Visualizing pokemon model - fetching model
+2025-01-20 15:22:44.937 | INFO     | __main__:visualize:21 - Loading test data
+2025-01-20 15:22:44.937 | INFO     | data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-20 15:22:46.951 | SUCCESS  | data:pokemon_data:111 - Data loaded successfully
+2025-01-20 15:23:11.755 | INFO     | __main__:visualize:60 - Visualizing analysis done!
+2025-01-20 15:23:11.762 | INFO     | __main__:visualize:61 - Creating best and worst prediction...
+2025-01-20 15:23:18.074 | SUCCESS  | __main__:visualize:63 - Best and worst prediction done
+2025-01-20 15:23:18.074 | INFO     | __main__:visualize:64 - Creating best and worst class...
+2025-01-20 15:24:09.445 | SUCCESS  | __main__:visualize:66 - Best and worst class done!
