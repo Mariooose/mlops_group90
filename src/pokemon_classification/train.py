@@ -2,25 +2,23 @@ import matplotlib.pyplot as plt
 import torch
 import typer
 from pokemon_classification.model import MyAwesomeModel
-
+from my_logger import logger
 from pokemon_classification.data import pokemon_data
 import sys
 import os
 
-# Dynamically add the src/ directory to sys.path
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # This gets the repository root
-src_path = os.path.join(project_root, "src")
-if src_path not in sys.path:
-    sys.path.insert(0, src_path)
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 #DEVICE = torch.device("cpu")
 
 def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
     """Train a model on pokemon."""
-    print("training")
+    print("Training started")
+    logger.info("Training started")
     print(f"{lr=}, {batch_size=}, {epochs=}")
+    logger.debug(f"{lr=}, {batch_size=}, {epochs=}")
 
+    logger.info('Fetching model and training data')
     model = MyAwesomeModel().to(DEVICE)
     train_set, _ = pokemon_data()
 
@@ -48,8 +46,15 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
             if i % 100 == 0:
                 print(f"Epoch {epoch}, iter {i}, loss: {loss.item()}")
 
+        logger.success(f'Epoch {epoch} done')
+
     print("Training complete")
-    torch.save(model.state_dict(), "models/model.pth")
+    logger.success("Training complete")
+
+    try:
+        torch.save(model.state_dict(), "models/model.pth")
+    except:
+        logger.error('Failed to save model')
     fig, axs = plt.subplots(1, 2, figsize=(15, 5))
     axs[0].plot(statistics["train_loss"])
     axs[0].set_title("Train loss")
