@@ -14,7 +14,7 @@ if src_path not in sys.path:
     sys.path.insert(0, src_path)
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
-
+#DEVICE = torch.device("cpu")
 
 def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
     """Train a model on pokemon."""
@@ -28,6 +28,7 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
 
     loss_fn = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+
 
     statistics = {"train_loss": [], "train_accuracy": []}
     for epoch in range(epochs):

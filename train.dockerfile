@@ -14,6 +14,7 @@ COPY src/pokemon_classification/ src/pokemon_classification/
 COPY data/ data/
 COPY pokemon_to_int.pkl pokemon_to_int.pkl
 COPY data/processed/ data/processed/
+COPY models/model.pth models/model.pth
 
 #working directory
 
