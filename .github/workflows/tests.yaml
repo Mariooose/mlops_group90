@@ -27,12 +27,14 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements_tests.txt
         pip install -r requirements_dev.txt
-      
-    - uses: iterative/setup-dvc@v1
+
+    - name: Auth with GCP
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCLOUD_SERVICE_KEY }}
+
     - name: Get data
       run: dvc pull
-      env:
-        credentials_json: ${{ secrets.GCLOUD_SERVICE_KEY }}
 
     - name: Unzip data
       run: |
