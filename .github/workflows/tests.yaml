@@ -44,7 +44,7 @@ jobs:
 
     - name: preprocess
       run: |
-        python3 src/pokemon_classification data/raw data/processed
+        python3 src/pokemon_classification/data.py data/raw data/processed
 
     - name: Test with pytest
       run: |
