@@ -3,6 +3,7 @@ from sklearn.metrics import RocCurveDisplay, accuracy_score, f1_score, precision
 import torch
 import typer
 from pokemon_classification.model import MyAwesomeModel
+from pokemon_classification.model import resnet18
 from my_logger import logger
 from pokemon_classification.data import pokemon_data
 import sys
@@ -21,23 +22,24 @@ wandb_entity = os.getenv("WANDB_ENTITY")
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 #DEVICE = torch.device("cpu")
 
-def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
+def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: int = 0) -> None:
     """Train a model on pokemon."""
     print("Training started")
     logger.info("Training started")
     print(f"{lr=}, {batch_size=}, {epochs=}")
 
-    run = wandb.init(
-        project=wandb_project,
-        config={"lr": lr, "batch_size": batch_size, "epochs": epochs},
-        entity=wandb_entity
-    )
+    if run_wandb:
+        run = wandb.init(
+            project=wandb_project,
+            config={"lr": lr, "batch_size": batch_size, "epochs": epochs},
+            entity=wandb_entity
+        )
 
     logger.debug(f"{lr=}, {batch_size=}, {epochs=}")
 
 
     logger.info('Fetching model and training data')
-    model = MyAwesomeModel().to(DEVICE)
+    model = resnet18.to(DEVICE)
     train_set, _ = pokemon_data()
 
     train_dataloader = torch.utils.data.DataLoader(train_set, batch_size=batch_size)
@@ -61,7 +63,8 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
             statistics["train_loss"].append(loss.item())
 
             accuracy = (y_pred.argmax(dim=1) == target).float().mean().item()
-            wandb.log({"train_loss": loss.item(), "train_accuracy": accuracy})
+            if run_wandb:
+                wandb.log({"train_loss": loss.item(), "train_accuracy": accuracy})
             statistics["train_accuracy"].append(accuracy)
 
             preds.append(y_pred.detach().cpu())
@@ -70,49 +73,53 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
             if i % 100 == 0:
                 print(f"Epoch {epoch}, iter {i}, loss: {loss.item()}")
 
-                # add a plot of the input images
-                images = wandb.Image(img[:5].detach().cpu(), caption="Input images")
-                wandb.log({"images": images})
+                if run_wandb:
+                    # add a plot of the input images
+                    images = wandb.Image(img[:5].detach().cpu(), caption="Input images")
+                    wandb.log({"images": images})
 
-                # add a plot of histogram of the gradients
-                grads = torch.cat([p.grad.flatten() for p in model.parameters() if p.grad is not None], 0)
-                wandb.log({"gradients": wandb.Histogram(grads.cpu())})
+                    # add a plot of histogram of the gradients
+                    grads = torch.cat([p.grad.flatten() for p in model.parameters() if p.grad is not None], 0)
+                    wandb.log({"gradients": wandb.Histogram(grads.cpu())})
            
             logger.success(f'Epoch {epoch} done')
 
-        # add a custom matplotlib plot of the ROC curves
-        preds = torch.cat(preds, 0)
-        targets = torch.cat(targets, 0)
 
-        for class_id in range(1000):
-            one_hot = torch.zeros_like(targets)
-            one_hot[targets == class_id] = 1
-            _ = RocCurveDisplay.from_predictions(
-                one_hot,
-                preds[:, class_id],
-                name=f"ROC curve for {class_id}",
-                plot_chance_level=(class_id == 2),
-            )
+        if run_wandb:
+            # add a custom matplotlib plot of the ROC curves
+            preds = torch.cat(preds, 0)
+            targets = torch.cat(targets, 0)
 
-        wandb.log({"roc": wandb.Image(plt)})
-        #wandb.plot({"roc": plt})
-        plt.close()  # close the plot to avoid memory leaks and overlapping figures
+            for class_id in range(1000):
+                one_hot = torch.zeros_like(targets)
+                one_hot[targets == class_id] = 1
+                _ = RocCurveDisplay.from_predictions(
+                    one_hot,
+                    preds[:, class_id],
+                    name=f"ROC curve for {class_id}",
+                    plot_chance_level=(class_id == 2),
+                )
 
-    final_accuracy = accuracy_score(targets, preds.argmax(dim=1))
-    final_precision = precision_score(targets, preds.argmax(dim=1), average="weighted")
-    final_recall = recall_score(targets, preds.argmax(dim=1), average="weighted")
-    final_f1 = f1_score(targets, preds.argmax(dim=1), average="weighted")
+            wandb.log({"roc": wandb.Image(plt)})
+            #wandb.plot({"roc": plt})
+            plt.close()  # close the plot to avoid memory leaks and overlapping figures
 
-    # first we save the model to a file then log it as an artifact
-    torch.save(model.state_dict(), "model.pth")
-    artifact = wandb.Artifact(
-        name="corrupt_mnist_model",
-        type="model",
-        description="A model trained to classify corrupt MNIST images",
-        metadata={"accuracy": final_accuracy, "precision": final_precision, "recall": final_recall, "f1": final_f1},
-    )
-    artifact.add_file("model.pth")
-    run.log_artifact(artifact)
+    if run_wandb:
+        final_accuracy = accuracy_score(targets, preds.argmax(dim=1))
+        final_precision = precision_score(targets, preds.argmax(dim=1), average="weighted")
+        final_recall = recall_score(targets, preds.argmax(dim=1), average="weighted")
+        final_f1 = f1_score(targets, preds.argmax(dim=1), average="weighted")
+
+        # first we save the model to a file then log it as an artifact
+        torch.save(model.state_dict(), "model.pth")
+        artifact = wandb.Artifact(
+            name="corrupt_mnist_model",
+            type="model",
+            description="A model trained to classify corrupt MNIST images",
+            metadata={"accuracy": final_accuracy, "precision": final_precision, "recall": final_recall, "f1": final_f1},
+        )
+        artifact.add_file("model.pth")
+        run.log_artifact(artifact)
 
 
     print("Training complete")
