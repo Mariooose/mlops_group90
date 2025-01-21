@@ -3,7 +3,7 @@ from sklearn.metrics import RocCurveDisplay, accuracy_score, f1_score, precision
 import torch
 import typer
 from pokemon_classification.model import MyAwesomeModel
-
+from my_logger import logger
 from pokemon_classification.data import pokemon_data
 import sys
 import os
@@ -17,25 +17,26 @@ api_key = os.getenv("WANDB_API_KEY")
 wandb_project = os.getenv("WANDB_PROJECT")
 wandb_entity = os.getenv("WANDB_ENTITY")
 
-# Dynamically add the src/ directory to sys.path
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # This gets the repository root
-src_path = os.path.join(project_root, "src")
-if src_path not in sys.path:
-    sys.path.insert(0, src_path)
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 #DEVICE = torch.device("cpu")
 
 def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
     """Train a model on pokemon."""
-    print("training")
+    print("Training started")
+    logger.info("Training started")
     print(f"{lr=}, {batch_size=}, {epochs=}")
+
     run = wandb.init(
         project=wandb_project,
         config={"lr": lr, "batch_size": batch_size, "epochs": epochs},
         entity=wandb_entity
     )
 
+    logger.debug(f"{lr=}, {batch_size=}, {epochs=}")
+
+
+    logger.info('Fetching model and training data')
     model = MyAwesomeModel().to(DEVICE)
     train_set, _ = pokemon_data()
 
@@ -76,6 +77,8 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
                 # add a plot of histogram of the gradients
                 grads = torch.cat([p.grad.flatten() for p in model.parameters() if p.grad is not None], 0)
                 wandb.log({"gradients": wandb.Histogram(grads.cpu())})
+           
+            logger.success(f'Epoch {epoch} done')
 
         # add a custom matplotlib plot of the ROC curves
         preds = torch.cat(preds, 0)
@@ -111,8 +114,14 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
     artifact.add_file("model.pth")
     run.log_artifact(artifact)
 
+
     print("Training complete")
-    torch.save(model.state_dict(), "models/model.pth")
+    logger.success("Training complete")
+
+    try:
+        torch.save(model.state_dict(), "models/model.pth")
+    except:
+        logger.error('Failed to save model')
     fig, axs = plt.subplots(1, 2, figsize=(15, 5))
     axs[0].plot(statistics["train_loss"])
     axs[0].set_title("Train loss")

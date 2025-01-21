@@ -7,18 +7,18 @@ from data import pokemon_data
 from data import PokemonDataset
 from data import create_dataframe
 from pokemon_classification.model import MyAwesomeModel
+from my_logger import logger
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
-def evaluate():
-    """Evaluate a trained model."""
-    print("Evaluating pokemon model...")
-
+def visualize():
+    """Visualize results of midel."""
+    print("Visualizing  pokemon model...")
+    logger.info('Visualizing pokemon model - fetching model')
     model = MyAwesomeModel().to(DEVICE)
-    model.load_state_dict(torch.load('models/model.pth', map_location=DEVICE))
-    state_dict = torch.load('models/model.pth')
-    print(type(state_dict))
+    model.load_state_dict(torch.load('models/model.pth', map_location=DEVICE, weights_only=True))
 
+    logger.info('Loading test data')
     _, test_set = pokemon_data()
     test_dataloader = torch.utils.data.DataLoader(test_set, batch_size=1)
 
@@ -52,15 +52,18 @@ def evaluate():
 
         img, target = img.to(DEVICE), target.to(DEVICE)
         y_pred = model(img)
-        results[i,:] = y_pred.detach().numpy()
+        results[i,:] = y_pred.detach().cpu().numpy()
         preds[i] = y_pred.argmax(dim=1)
         correct += (y_pred.argmax(dim=1) == target).float().sum().item()
         i += 1
 
+    logger.info('Visualizing analysis done!')
+    logger.info('Creating best and worst prediction...')
     best_and_worst_pred(images, total, correct, results, preds, targets, int_to_pokemon)
-
+    logger.success('Best and worst prediction done')
+    logger.info('Creating best and worst class...')
     best_and_worst_class(images, total, correct, results, preds, targets, int_to_pokemon)
-
+    logger.success('Best and worst class done!')
     return
 
 def best_and_worst_pred(images, total, correct, results, preds, targets, int_to_pokemon) -> None:
@@ -126,7 +129,7 @@ def best_and_worst_class(images, total, correct, results, preds, targets, int_to
 
 
 def main():
-    typer.run(evaluate)
+    typer.run(visualize)
 
 if __name__ == "__main__":
     main()

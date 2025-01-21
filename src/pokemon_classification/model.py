@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+from my_logger import logger
 
 
 class MyAwesomeModel(nn.Module):
@@ -16,8 +17,10 @@ class MyAwesomeModel(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         #raise error
         if x.ndim != 4:
+            logger.error('Expected input to a 4D tensor')
             raise ValueError('Expected input to a 4D tensor')
         if x.shape[1] != 4 or x.shape[2] != 128 or x.shape[3] != 128:
+            logger.error('Expected sample to have shape 4,128,128')
             raise ValueError('Expected sample to have shape 4,128,128')
 
         """Forward pass."""
@@ -29,7 +32,8 @@ class MyAwesomeModel(nn.Module):
         x = torch.max_pool2d(x, 2, 2)
         x = torch.flatten(x, 1)
         x = self.dropout(x)
-        return self.fc1(x)
+        result = self.fc1(x)
+        return result
 
 
 if __name__ == "__main__":
