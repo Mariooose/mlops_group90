@@ -1,0 +1,19 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Build container image'
+  args: [
+    'build',
+    '.',
+    '-t',
+    'europe-west1-docker.pkg.dev/pivotal-base-447808-q9/pokemon/train2_docker',
+    '-f',
+    'train2.dockerfile'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Push container image'
+  args: [
+    'push',
+    'europe-west1-docker.pkg.dev/pivotal-base-447808-q9/pokemon/train2_docker'
+  ]
+options:
+  logging: CLOUD_LOGGING_ONLY

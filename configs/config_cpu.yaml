@@ -3,4 +3,4 @@ workerPoolSpecs:
         machineType: n1-highmem-2
     replicaCount: 1
     containerSpec:
-        imageUri: gcr.io/pivotal-base-447808-q9/pokemon
+        imageUri: europe-west1-docker.pkg.dev/pivotal-base-447808-q9/pokemon/train_docker:latest

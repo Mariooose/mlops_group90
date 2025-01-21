@@ -101,10 +101,14 @@ def preprocess(raw_data_path: Path, output_folder: Path, download_data=False) ->
 def pokemon_data():
     """Return train and test datasets for pokemon classification."""
     logger.info("Loading data via pokemon_data()...")
-    train_images = torch.load("data/processed/train_images.pt",weights_only=True)
-    train_target = torch.load("data/processed/train_target.pt",weights_only=True)
-    test_images = torch.load("data/processed/test_images.pt",weights_only=True)
-    test_target = torch.load("data/processed/test_target.pt",weights_only=True)
+    #train_images = torch.load("data/processed/train_images.pt",weights_only=True)
+    #train_target = torch.load("data/processed/train_target.pt",weights_only=True)
+    #test_images = torch.load("data/processed/test_images.pt",weights_only=True)
+    #test_target = torch.load("data/processed/test_target.pt",weights_only=True)
+    train_images = torch.load('/gcs/mlops_project90/data/processed/train_images.pt',weights_only=True)
+    train_target = torch.load("/gcs/mlops_project90/data/processed/train_target.pt",weights_only=True)
+    test_images = torch.load("/gcs/mlops_project90/data/processed/test_images.pt",weights_only=True)
+    test_target = torch.load("/gcs/mlops_project90/data/processed/test_target.pt",weights_only=True)
 
     train_set = torch.utils.data.TensorDataset(train_images, train_target)
     test_set = torch.utils.data.TensorDataset(test_images, test_target)
