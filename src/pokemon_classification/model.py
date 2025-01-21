@@ -1,7 +1,10 @@
 import torch
 from torch import nn
 from my_logger import logger
+import timm
 
+#create model with output size 1000 and takes in 4 channels
+resnet18 = timm.create_model('resnet18', num_classes=1000, in_chans=4, pretrained=True) 
 
 class MyAwesomeModel(nn.Module):
     """My awesome model."""
@@ -37,7 +40,8 @@ class MyAwesomeModel(nn.Module):
 
 
 if __name__ == "__main__":
-    model = MyAwesomeModel()
+    #model = MyAwesomeModel()
+    model = resnet18
     print(f"Model architecture: {model}")
     print(f"Number of parameters: {sum(p.numel() for p in model.parameters())}")
 

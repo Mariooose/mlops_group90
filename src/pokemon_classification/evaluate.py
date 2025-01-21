@@ -1,6 +1,7 @@
 import torch
 import typer
 from pokemon_classification.model import MyAwesomeModel
+from pokemon_classification.model import resnet18
 import os
 from my_logger import logger
 
@@ -19,7 +20,7 @@ def evaluate() -> None:
     """Evaluate a trained model."""
     print("Evaluating pokemon model...")
     logger.info('Evaluating pokemon model - fetching model')
-    model = MyAwesomeModel().to(DEVICE)
+    model = resnet18.to(DEVICE)
     if (os.path.exists("models/model.pth")):
         model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE, weights_only=True ))
     else:
