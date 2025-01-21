@@ -11,3 +11,5 @@ mathilde.py
 /data
 mat_noter.md
 rawdata.zip
+.env
+wandb/
