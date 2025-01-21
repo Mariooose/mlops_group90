@@ -1,14 +1,10 @@
 .DS_Store
-data/processed/test_data.pt
-data/processed/train_data.pt
-data/processed/validation_data.pt
 reports/figures/training_statistics.png
 src/pokemon_classification/__pycache__/
 src/pokemon_classification.egg-info/
-data/
 log/resnet18/
 mathilde.py
-/data
+data/raw
 mat_noter.md
 rawdata.zip
 .env
