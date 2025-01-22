@@ -1,10 +1,7 @@
-.DS_Store
-reports/figures/training_statistics.png
-src/pokemon_classification/__pycache__/
-src/pokemon_classification.egg-info/
-log/resnet18/
-mathilde.py
-mat_noter.md
-rawdata.zip
-.env
-wandb/
+*
+!configs/
+!src/
+!requirements.txt
+!pyproject.toml
+!pokemon_to_int.pkl
+!train2.dockerfile
