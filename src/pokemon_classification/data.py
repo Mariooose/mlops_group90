@@ -104,7 +104,12 @@ def pokemon_data():
 
     train_images,train_target,test_images,test_target = None,None,None,None
     #check if data is locally else fetch from GCP bucket
-    if set(["train_images.pt","train_target.pt","test_images.pt","test_target.pt"]).issubset(os.listdir("data/processed")):
+    try:
+        list_of_files = os.listdir("data/processed")
+    except FileNotFoundError:
+        list_of_files = []
+
+    if set(["train_images.pt","train_target.pt","test_images.pt","test_target.pt"]).issubset(list_of_files):
         train_images = torch.load("data/processed/train_images.pt",weights_only=True)
         train_target = torch.load("data/processed/train_target.pt",weights_only=True)
         test_images = torch.load("data/processed/test_images.pt",weights_only=True)
