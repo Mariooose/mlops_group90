@@ -1,0 +1,46 @@
+steps:
+- name: "alpine"
+  id: "Replace values in the training config"
+  entrypoint: "sh"
+  args:
+    - '-c'
+    - |
+      apk add --no-cache gettext
+      envsubst < configs/config_cpu.yaml > configs/config.yaml.tmp
+      mv configs/config.yaml.tmp configs/config_cpu.yaml
+  secretEnv: ['WANDB_API_KEY', 'WANDB_PROJECT','WANDB_ENTITY']
+
+- name: 'alpine'
+  id: "Show config"
+  waitFor: ['Replace values in the training config']
+  entrypoint: "sh"
+  args:
+    - '-c'
+    - |
+      cat configs/config_cpu.yaml
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 'Train on vertex AI'
+  waitFor: ['Replace values in the training config']
+  args: [
+    'ai',
+    'custom-jobs',
+    'create',
+    '--region',
+    'europe-west1',
+    '--display-name',
+    'example-mlops-job',
+    '--config',
+    'configs/config_cpu.yaml',
+    '--args=--epochs=1',
+    '--args=--lr=1e-5',
+    '--args=--run-wandb=1'
+  ]
+availableSecrets:
+  secretManager:
+  - versionName: projects/pivotal-base-447808-q9/secrets/WANDB_API_KEY/versions/latest
+    env: 'WANDB_API_KEY'
+  - versionName: projects/pivotal-base-447808-q9/secrets/WANDB_PROJECT/versions/latest
+    env: 'WANDB_PROJECT'
+  - versionName: projects/pivotal-base-447808-q9/secrets/WANDB_ENTITY/versions/latest
+    env: 'WANDB_ENTITY'

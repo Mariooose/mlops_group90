@@ -4,8 +4,10 @@ src/pokemon_classification/__pycache__/
 src/pokemon_classification.egg-info/
 log/resnet18/
 mathilde.py
-data/raw
+data/
 mat_noter.md
 rawdata.zip
 .env
 wandb/
+models/model.pth
+model.pth

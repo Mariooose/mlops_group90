@@ -1,0 +1,7 @@
+*
+!configs/
+!src/
+!requirements.txt
+!pyproject.toml
+!pokemon_to_int.pkl
+!train2.dockerfile
