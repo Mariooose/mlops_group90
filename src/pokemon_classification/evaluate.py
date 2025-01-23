@@ -4,8 +4,8 @@ import torch
 import typer
 
 from my_logger import logger
-from pokemon_classification.data import PokemonDataset, pokemon_data
-from pokemon_classification.model import MyAwesomeModel, resnet18
+from pokemon_classification.data import pokemon_data
+from pokemon_classification.model import resnet18
 
 # Detect if running in Docker
 # RUNNING_IN_DOCKER = os.path.exists("/.dockerenv")

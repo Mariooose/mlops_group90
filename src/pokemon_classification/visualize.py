@@ -5,9 +5,9 @@ import numpy as np
 import torch
 import typer
 
-from data import PokemonDataset, create_dataframe, pokemon_data
+from data import create_dataframe, pokemon_data
 from my_logger import logger
-from pokemon_classification.model import MyAwesomeModel
+from pokemon_classification.model import resnet18
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
@@ -16,7 +16,7 @@ def visualize():
     """Visualize results of midel."""
     print("Visualizing  pokemon model...")
     logger.info("Visualizing pokemon model - fetching model")
-    model = MyAwesomeModel().to(DEVICE)
+    model = resnet18.to(DEVICE)
     model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE, weights_only=True))
 
     logger.info("Loading test data")
@@ -49,10 +49,12 @@ def visualize():
         targets[i] = target.item()
 
         img, target = img.to(DEVICE), target.to(DEVICE)
-        y_pred = model(img)
+        with torch.no_grad():
+            y_pred = model(img)
+        y_pred = torch.nn.functional.softmax(y_pred[0], dim=0)
         results[i, :] = y_pred.detach().cpu().numpy()
-        preds[i] = y_pred.argmax(dim=1)
-        correct += (y_pred.argmax(dim=1) == target).float().sum().item()
+        preds[i] = y_pred.argmax()
+        correct += (y_pred.argmax() == target).float().sum().item()
         i += 1
 
     logger.info("Visualizing analysis done!")
