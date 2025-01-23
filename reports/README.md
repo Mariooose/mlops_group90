@@ -62,7 +62,7 @@ will check the repositories and the code to verify your answers.
 * [x] Add command line interfaces and project commands to your code where it makes sense (M9)
 * [x] Construct one or multiple docker files for your code (M10)
 * [x] Build the docker files locally and make sure they work as intended (M10)
-* [ ] Write one or multiple configurations files for your experiments (M11)
+* [x] Write one or multiple configurations files for your experiments (M11)
 * [ ] Used Hydra to load the configurations and manage your hyperparameters (M11)
 * [x] Use profiling to optimize your code (M12)
 * [x] Use logging to log important events in your code (M14)
@@ -82,14 +82,14 @@ will check the repositories and the code to verify your answers.
 * [ ] Add a continues workflow that triggers when data changes (M19)
 * [ ] Add a continues workflow that triggers when changes to the model registry is made (M19)
 * [x] Create a data storage in GCP Bucket for your data and link this with your data version control setup (M21)
-* [ ] Create a trigger workflow for automatically building your docker images (M21)
-* [ ] Get your model training in GCP using either the Engine or Vertex AI (M21)
+* [x] Create a trigger workflow for automatically building your docker images (M21)
+* [x] Get your model training in GCP using either the Engine or Vertex AI (M21)
 * [x] Create a FastAPI application that can do inference using your model (M22)
-* [ ] Deploy your model in GCP using either Functions or Run as the backend (M23)
+* [x] Deploy your model in GCP using either Functions or Run as the backend (M23)
 * [ ] Write API tests for your application and setup continues integration for these (M24)
 * [ ] Load test your application (M24)
 * [ ] Create a more specialized ML-deployment API using either ONNX or BentoML, or both (M25)
-* [ ] Create a frontend for your API (M26)
+* [x] Create a frontend for your API (M26)
 
 ### Week 3
 
@@ -154,14 +154,16 @@ The members in the group are:  s224388  ,s224360   and s224401
 > **through to get an exact copy of your environment.**
 >
 > Recommended answer length: 100-200 words
->
-> Example:
-> *We used ... for managing our dependencies. The list of dependencies was auto-generated using ... . To get a*
-> *complete copy of our development environment, one would have to run the following commands*
+
 >
 > Answer:
+137 ord
+We used requirement files to handle our dependencies. We downloaded packages into our own virtual environments as we developed the code and then maintained the requirements documents using the package pipreqs.
+To get a requirements file copying all the packages and versions in the environment one would run "pipreqs . ",and if the file already exists you can use the comand "pipreqs . --force" to overwrite the file.
 
---- question 4 fill here ---
+We have for the most part used the command "pip freeze > requirements.txt" to update our requirements. When new additions to the code were made, the other group members would run "pip install -r requierements.txt" to get up to date with the developing environment.
+To check possible conflicts in the dependencies between versions of packages we would run "pip check", and then assess what to do from there.
+
 
 ### Question 5
 
@@ -170,14 +172,17 @@ The members in the group are:  s224388  ,s224360   and s224401
 >
 > Recommended answer length: 100-200 words
 >
-> Example:
-> *From the cookiecutter template we have filled out the ... , ... and ... folder. We have removed the ... folder*
-> *because we did not use any ... in our project. We have added an ... folder that contains ... for running our*
-> *experiments.*
+
 >
 > Answer:
+162 ord
+We have used the cookiecutter template that was provided in the beginning of the course. In this we placed our machine learning model in the src file, as well as using the folders dockerfiles, models, data and of course reports. Here we have placed files like our dockerfiles, model from our classifier data and so on.
+Besides the already provided structure we added some extra folders including "app" for our deployment of the model so users can get our help classifying their pokemons and the folder "log" as a result of our profiling for launching TensorBoards.
 
---- question 5 fill here ---
+Other than the folders we have produced a range of different files in the repos to help uptimize, clean up and run our code, here including .pre-commit-config.yaml, cloudbuild.yaml, my_log.log (to store logs of the code), rawdata.zip.dvc (a more optimal format to handle our data) and a few more.
+
+From the cookiecutter template we ended up deleting the folder notebooks as we simply did not use it.
+
 
 ### Question 6
 
@@ -191,6 +196,9 @@ The members in the group are:  s224388  ,s224360   and s224401
 > *concepts are important in larger projects because ... . For example, typing ...*
 >
 > Answer:
+To check, clean up and document our code we have used the the packages ruff, loguru,
+
+
 
 --- question 6 fill here ---
 
