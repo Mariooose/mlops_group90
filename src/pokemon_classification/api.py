@@ -1,12 +1,13 @@
+import pickle
 from contextlib import asynccontextmanager
 
-import torch
-import uvicorn
-import typer
-import pickle
 import numpy as np
-from PIL import Image
+import torch
+import typer
+import uvicorn
 from fastapi import FastAPI, File, UploadFile
+from PIL import Image
+
 from src.pokemon_classification.model import resnet18
 
 

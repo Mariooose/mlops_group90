@@ -1,13 +1,13 @@
+import pickle
+
 import matplotlib.pyplot as plt
+import numpy as np
 import torch
 import typer
-import pickle
-import numpy as np
-from data import pokemon_data
-from data import PokemonDataset
-from data import create_dataframe
-from pokemon_classification.model import MyAwesomeModel
+
+from data import PokemonDataset, create_dataframe, pokemon_data
 from my_logger import logger
+from pokemon_classification.model import MyAwesomeModel
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 

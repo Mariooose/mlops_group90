@@ -1,7 +1,8 @@
 import torch
+from torch.profiler import ProfilerActivity, profile, tensorboard_trace_handler
+
+from src.pokemon_classification.data import PokemonDataset, pokemon_data
 from src.pokemon_classification.model import MyAwesomeModel
-from src.pokemon_classification.data import pokemon_data, PokemonDataset
-from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
 
 # Register custom class for safe deserialization
 torch.serialization.add_safe_globals({"PokemonDataset": PokemonDataset})

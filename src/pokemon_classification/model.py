@@ -1,7 +1,8 @@
+import timm
 import torch
 from torch import nn
+
 from src.my_logger import logger
-import timm
 
 # create model with output size 1000 and takes in 4 channels
 resnet18 = timm.create_model("resnet18", num_classes=1000, in_chans=4, pretrained=True)

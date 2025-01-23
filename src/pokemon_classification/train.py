@@ -1,17 +1,16 @@
+import os
+import sys
+
 import matplotlib.pyplot as plt
-from sklearn.metrics import RocCurveDisplay, accuracy_score, f1_score, precision_score, recall_score
 import torch
 import typer
-from pokemon_classification.model import MyAwesomeModel
-from pokemon_classification.model import resnet18
+import wandb
+from dotenv import load_dotenv
+from sklearn.metrics import RocCurveDisplay, accuracy_score, f1_score, precision_score, recall_score
+
 from my_logger import logger
 from pokemon_classification.data import pokemon_data
-import sys
-import os
-import wandb
-
-
-from dotenv import load_dotenv
+from pokemon_classification.model import MyAwesomeModel, resnet18
 
 load_dotenv()
 import os

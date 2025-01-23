@@ -1,6 +1,9 @@
 import os
 import pickle
+import sys
 from pathlib import Path
+
+import dvc.api
 
 # test
 import pandas as pd
@@ -11,11 +14,8 @@ from sklearn.utils import shuffle
 from torch import save
 from torch.utils.data import Dataset
 from torchvision.io import decode_image
-import dvc.api
-import sys
-import os
-from my_logger import logger  # Import the logger
 
+from my_logger import logger  # Import the logger
 
 # Read pokemon_to_int dictiionary that converts a label to a number
 logger.info("Reading pokemon_to_int.pkl")

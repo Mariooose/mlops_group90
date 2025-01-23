@@ -1,5 +1,6 @@
 import pytest
 from torch.utils.data import Dataset
+
 from pokemon_classification.data import pokemon_data
 
 

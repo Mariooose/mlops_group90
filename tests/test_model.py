@@ -1,6 +1,7 @@
 import pytest
-from pokemon_classification.model import MyAwesomeModel
 import torch
+
+from pokemon_classification.model import MyAwesomeModel
 
 
 def test_model():

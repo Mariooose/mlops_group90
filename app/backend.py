@@ -1,14 +1,15 @@
+import pickle
 from contextlib import asynccontextmanager
 
 import anyio
+import numpy as np
 import torch
 import uvicorn
-import pickle
-import numpy as np
+from fastapi import FastAPI, File, HTTPException, UploadFile
 from PIL import Image
-from fastapi import FastAPI, File, UploadFile, HTTPException
-from src.pokemon_classification.model import resnet18
 from torchvision import transforms
+
+from src.pokemon_classification.model import resnet18
 
 
 @asynccontextmanager
