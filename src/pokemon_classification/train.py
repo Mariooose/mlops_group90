@@ -110,9 +110,9 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: i
         # first we save the model to a file then log it as an artifact
         torch.save(model.state_dict(), "model.pth")
         artifact = wandb.Artifact(
-            name="corrupt_mnist_model",
+            name="Pokemon_model",
             type="model",
-            description="A model trained to classify corrupt MNIST images",
+            description="A model trained to classify pokemon images",
             metadata={"accuracy": final_accuracy, "precision": final_precision, "recall": final_recall, "f1": final_f1},
         )
         artifact.add_file("model.pth")
@@ -130,6 +130,7 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: i
     axs[0].set_title("Train loss")
     axs[1].plot(statistics["train_accuracy"])
     axs[1].set_title("Train accuracy")
+    os.mkdir("reports/figures")
     fig.savefig("reports/figures/training_statistics.png")
 
 
