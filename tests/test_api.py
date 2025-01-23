@@ -1,10 +1,10 @@
 from fastapi.testclient import TestClient
-from src.pokemon_classification.api import app
+from app.backend import app
 
 client = TestClient(app)
 
-def test_read_root(model):
+def test_read_root():
     with TestClient(app) as client:
         response = client.get("/")
         assert response.status_code == 200
-        assert response.json() == {"message": "Welcome to the MNIST model inference API!"}
+        assert response.json() == {"message": "Hello from the backend!"}

@@ -53,10 +53,20 @@ def predict_pokemon(image_path: str) -> str:
     model.eval()
 
     img = img.to(DEVICE)
-    y_preds = model(img)
-    pred = y_preds.argmax(dim=1).item()
+    y = model(img)
+    y_np = y.cpu().detach().numpy()
 
-    return int_to_pokemon[pred]
+    y_np = y_np.flatten()
+    indx = np.argsort(y_np)
+    indx = np.flip(indx)
+
+    preds = []
+    probs = []
+    for i in range(5):
+        preds.append(int_to_pokemon[indx[i]])
+        probs.append(str(y_np[indx[i]]))
+
+    return preds, probs
 
 @app.get("/")
 async def root():
@@ -73,9 +83,9 @@ async def classify_pokemon(data: UploadFile = File(...)):
         async with await anyio.open_file(data.filename, "wb") as f:
             await f.write(contents)
 
-        pred = predict_pokemon(data.filename)
+        preds, probs = predict_pokemon(data.filename)
 
-        return {"filename": data.filename, "prediction": pred}
+        return {"filename": data.filename, "pred1": preds, "prob1": probs}
     except Exception as e:
         raise HTTPException(status_code=500) from e
 

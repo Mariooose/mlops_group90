@@ -36,7 +36,9 @@ def main() -> None:
         msg = "Backend service not found"
         raise ValueError(msg)
 
-    st.title("Image Classification")
+    st.title("Pokémon Classification")
+    #st.write("Upload a PNG of a pokemon and our amazing ML model will tell which pokemon it is!")
+    st.write("Who's that Pokémon?")
 
     uploaded_file = st.file_uploader("Upload an image", type=["png"])
 
@@ -45,12 +47,19 @@ def main() -> None:
         result = classify_image(image, backend=backend)
 
         if result is not None:
-            prediction = result["prediction"]
-            #probabilities = result["probabilities"]
+            predictions = result["pred1"]
+            probabilities = result["prob1"]
 
             # show the image and prediction
             st.image(image, caption="Uploaded Image")
-            st.write("Prediction:", prediction)
+            st.write("Its ", predictions[0], "!")
+
+            st.write("Top 5 predictions:")
+            st.write("1: Prediction: ", predictions[0], "Confidence: ", probabilities[0])
+            st.write("2: Prediction: ", predictions[1], "Confidence: ", probabilities[1])
+            st.write("3: Prediction: ", predictions[2], "Confidence: ", probabilities[2])
+            st.write("4: Prediction: ", predictions[3], "Confidence: ", probabilities[3])
+            st.write("5: Prediction: ", predictions[4], "Confidence: ", probabilities[4])
 
             # make a nice bar chart
             #data = {"Class": [f"Class {i}" for i in range(10)], "Probability": probabilities}
