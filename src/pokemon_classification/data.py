@@ -43,29 +43,6 @@ def create_dataframe(directory: Path) -> pd.DataFrame:
     df = shuffle(df).reset_index(drop=True)
     return df
 
-
-class PokemonDataset(Dataset):
-    def __init__(self, annotations_file, img_dir, transform=None, target_transform=None):
-        self.img_labels = annotations_file
-        self.img_dir = img_dir
-        self.transform = transform
-        self.target_transform = target_transform
-
-    def __len__(self) -> int:
-        return len(self.img_labels)
-
-    def __getitem__(self, idx):
-        img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, 0])
-        image = decode_image(img_path, mode="RGB").type(torch.float32)
-        label = self.img_labels.iloc[idx, 1]
-        if self.transform:
-            image = self.transform(image)
-        if self.target_transform:
-            label = self.target_transform(label)
-        label = pokemon_to_int[label]
-        return image, label
-
-
 def preprocess(raw_data_path: Path, output_folder: Path, download_data=False) -> None:
     print("Preprocessing data...")
     logger.info("Preprocessing data")

@@ -10,7 +10,7 @@ from sklearn.metrics import RocCurveDisplay, accuracy_score, f1_score, precision
 
 from my_logger import logger
 from pokemon_classification.data import pokemon_data
-from pokemon_classification.model import MyAwesomeModel, resnet18
+from pokemon_classification.model import resnet18
 
 load_dotenv()
 import os

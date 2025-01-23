@@ -1,0 +1,175 @@
+2025-01-23 10:45:23.817 | INFO     | pokemon_classification.data:<module>:20 - Reading pokemon_to_int.pkl
+2025-01-23 10:45:25.821 | INFO     | pokemon_classification.data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-23 10:45:30.582 | SUCCESS  | pokemon_classification.data:pokemon_data:125 - Data loaded successfully
+2025-01-23 10:45:31.555 | ERROR    | pokemon_classification.model:forward:23 - Expected input to a 4D tensor
+2025-01-23 10:45:31.559 | ERROR    | pokemon_classification.model:forward:26 - Expected sample to have shape 4,128,128
+2025-01-23 10:46:16.681 | INFO     | pokemon_classification.data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 10:50:07.709 | INFO     | pokemon_classification.data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 10:50:54.013 | INFO     | pokemon_classification.data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 10:50:54.609 | INFO     | pokemon_classification.data:pokemon_data:103 - Loading data via pokemon_data()...
+2025-01-23 10:50:59.166 | SUCCESS  | pokemon_classification.data:pokemon_data:125 - Data loaded successfully
+2025-01-23 10:50:59.709 | ERROR    | pokemon_classification.model:forward:25 - Expected input to a 4D tensor
+2025-01-23 10:50:59.774 | ERROR    | pokemon_classification.model:forward:28 - Expected sample to have shape 4,128,128
+2025-01-23 10:56:51.228 | INFO     | pokemon_classification.data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 10:57:41.625 | INFO     | pokemon_classification.data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 10:57:42.192 | INFO     | pokemon_classification.data:pokemon_data:80 - Loading data via pokemon_data()...
+2025-01-23 10:57:46.322 | SUCCESS  | pokemon_classification.data:pokemon_data:102 - Data loaded successfully
+2025-01-23 11:05:20.498 | INFO     | pokemon_classification.data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 11:05:20.960 | INFO     | pokemon_classification.data:pokemon_data:80 - Loading data via pokemon_data()...
+2025-01-23 11:05:24.846 | SUCCESS  | pokemon_classification.data:pokemon_data:102 - Data loaded successfully
+2025-01-23 11:09:30.032 | INFO     | pokemon_classification.data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 11:09:30.611 | INFO     | pokemon_classification.data:pokemon_data:80 - Loading data via pokemon_data()...
+2025-01-23 11:09:34.570 | SUCCESS  | pokemon_classification.data:pokemon_data:102 - Data loaded successfully
+2025-01-23 11:10:00.809 | INFO     | pokemon_classification.data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 11:11:06.603 | INFO     | pokemon_classification.data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 11:11:07.550 | INFO     | __main__:train:30 - Training started
+2025-01-23 11:11:07.551 | DEBUG    | __main__:train:38 - lr=0.001, batch_size=32, epochs=10
+2025-01-23 11:11:07.551 | INFO     | __main__:train:40 - Fetching model and training data
+2025-01-23 11:11:07.586 | INFO     | pokemon_classification.data:pokemon_data:80 - Loading data via pokemon_data()...
+2025-01-23 11:11:11.325 | SUCCESS  | pokemon_classification.data:pokemon_data:102 - Data loaded successfully
+2025-01-23 11:11:12.502 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:12.634 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:12.746 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:12.859 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:12.971 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:13.083 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:13.196 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:13.313 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:13.450 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:13.656 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:13.946 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:14.199 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:14.466 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:14.737 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:14.987 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:15.255 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:15.519 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:15.774 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:16.031 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:16.284 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:16.542 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:16.799 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:17.058 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:17.312 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:17.570 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:17.826 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:18.082 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:18.337 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:18.595 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:18.848 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:19.106 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:19.360 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:19.619 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:19.873 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:20.133 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:20.387 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:20.650 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:20.903 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:21.170 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:21.428 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:21.690 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:21.951 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:22.206 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:22.467 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:22.724 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:22.987 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:23.243 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:23.508 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:23.759 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:24.023 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:24.280 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:24.546 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:24.808 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:25.068 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:25.326 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:25.585 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:25.850 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:26.111 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:26.371 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:26.631 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:26.888 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:27.146 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:27.398 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:27.657 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:27.915 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:28.171 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:28.426 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:28.686 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:28.939 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:29.204 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:29.457 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:29.725 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:29.977 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:30.242 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:30.501 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:30.758 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:31.015 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:31.272 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:31.527 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:31.785 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:32.038 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:32.301 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:32.555 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:32.821 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:33.073 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:33.341 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:33.598 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:33.861 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:34.117 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:34.384 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:34.642 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:34.907 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:35.162 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:35.427 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:35.685 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:35.947 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:36.202 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:36.467 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:36.721 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:36.985 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:37.242 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:37.508 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:37.763 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:38.030 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:38.284 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:38.549 | SUCCESS  | __main__:train:83 - Epoch 0 done
+2025-01-23 11:11:59.839 | INFO     | data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 11:12:01.385 | INFO     | __main__:visualize:18 - Visualizing pokemon model - fetching model
+2025-01-23 11:12:01.472 | INFO     | __main__:visualize:22 - Loading test data
+2025-01-23 11:12:01.472 | INFO     | data:pokemon_data:80 - Loading data via pokemon_data()...
+2025-01-23 11:12:05.210 | SUCCESS  | data:pokemon_data:102 - Data loaded successfully
+2025-01-23 11:12:46.843 | INFO     | __main__:visualize:58 - Visualizing analysis done!
+2025-01-23 11:12:46.845 | INFO     | __main__:visualize:59 - Creating best and worst prediction...
+2025-01-23 11:19:03.696 | SUCCESS  | __main__:visualize:61 - Best and worst prediction done
+2025-01-23 11:19:03.697 | INFO     | __main__:visualize:62 - Creating best and worst class...
+2025-01-23 11:19:04.929 | SUCCESS  | __main__:visualize:64 - Best and worst class done!
+2025-01-23 11:19:11.660 | INFO     | data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 11:19:13.242 | INFO     | __main__:visualize:18 - Visualizing pokemon model - fetching model
+2025-01-23 11:19:13.332 | INFO     | __main__:visualize:22 - Loading test data
+2025-01-23 11:19:13.333 | INFO     | data:pokemon_data:80 - Loading data via pokemon_data()...
+2025-01-23 11:19:17.110 | SUCCESS  | data:pokemon_data:102 - Data loaded successfully
+2025-01-23 11:20:09.098 | INFO     | data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 11:20:10.539 | INFO     | __main__:visualize:18 - Visualizing pokemon model - fetching model
+2025-01-23 11:20:10.626 | INFO     | __main__:visualize:22 - Loading test data
+2025-01-23 11:20:10.626 | INFO     | data:pokemon_data:80 - Loading data via pokemon_data()...
+2025-01-23 11:20:14.363 | SUCCESS  | data:pokemon_data:102 - Data loaded successfully
+2025-01-23 11:20:52.030 | INFO     | data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 11:20:53.412 | INFO     | __main__:visualize:18 - Visualizing pokemon model - fetching model
+2025-01-23 11:20:53.498 | INFO     | __main__:visualize:22 - Loading test data
+2025-01-23 11:20:53.499 | INFO     | data:pokemon_data:80 - Loading data via pokemon_data()...
+2025-01-23 11:20:57.225 | SUCCESS  | data:pokemon_data:102 - Data loaded successfully
+2025-01-23 11:21:37.179 | INFO     | __main__:visualize:59 - Visualizing analysis done!
+2025-01-23 11:21:37.183 | INFO     | __main__:visualize:60 - Creating best and worst prediction...
+2025-01-23 11:22:11.468 | SUCCESS  | __main__:visualize:62 - Best and worst prediction done
+2025-01-23 11:22:11.470 | INFO     | __main__:visualize:63 - Creating best and worst class...
+2025-01-23 11:22:30.294 | SUCCESS  | __main__:visualize:65 - Best and worst class done!
+2025-01-23 11:24:32.861 | INFO     | data:<module>:21 - Reading pokemon_to_int.pkl
+2025-01-23 11:24:34.487 | INFO     | __main__:visualize:18 - Visualizing pokemon model - fetching model
+2025-01-23 11:24:34.575 | INFO     | __main__:visualize:22 - Loading test data
+2025-01-23 11:24:34.576 | INFO     | data:pokemon_data:80 - Loading data via pokemon_data()...
+2025-01-23 11:24:38.347 | SUCCESS  | data:pokemon_data:102 - Data loaded successfully
+2025-01-23 11:25:18.408 | INFO     | __main__:visualize:60 - Visualizing analysis done!
+2025-01-23 11:25:18.414 | INFO     | __main__:visualize:61 - Creating best and worst prediction...
+2025-01-23 11:25:44.814 | SUCCESS  | __main__:visualize:63 - Best and worst prediction done
+2025-01-23 11:25:44.816 | INFO     | __main__:visualize:64 - Creating best and worst class...
+2025-01-23 11:25:48.982 | SUCCESS  | __main__:visualize:66 - Best and worst class done!
