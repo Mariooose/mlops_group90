@@ -10,6 +10,7 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from src.pokemon_classification.model import resnet18
 from torchvision import transforms
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Load and clean up model on startup and shutdown."""
@@ -18,7 +19,7 @@ async def lifespan(app: FastAPI):
 
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = resnet18.to(DEVICE)
-    model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE, weights_only=True ))
+    model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE, weights_only=True))
 
     transform = transforms.Compose(
         [
@@ -39,6 +40,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+
 def predict_pokemon(image_path: str) -> str:
     """Predict pokemon from image"""
 
@@ -47,8 +49,8 @@ def predict_pokemon(image_path: str) -> str:
     i_image = transform(i_image)
     i_image = (i_image - i_image.mean()) / i_image.std()
 
-    img = torch.zeros(1,4,128,128,dtype=torch.float)
-    img[0,:,:,:] = i_image
+    img = torch.zeros(1, 4, 128, 128, dtype=torch.float)
+    img[0, :, :, :] = i_image
 
     model.eval()
 
@@ -68,10 +70,12 @@ def predict_pokemon(image_path: str) -> str:
 
     return preds, probs
 
+
 @app.get("/")
 async def root():
     """Root endpoint."""
     return {"message": "Hello from the backend!"}
+
 
 @app.post("/classify/")
 async def classify_pokemon(data: UploadFile = File(...)):

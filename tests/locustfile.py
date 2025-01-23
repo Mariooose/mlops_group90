@@ -17,5 +17,5 @@ class MyUser(HttpUser):
     @task(3)
     def post_image(self) -> None:
         """A task that simulates a user uploading a random PNG to the FastAPI app."""
-        random_png = np.random.rand(128,128,4)
+        random_png = np.random.rand(128, 128, 4)
         self.client.post("/classify/", files={"data": random_png.tobytes()}, timeout=10)

@@ -4,7 +4,7 @@ from src.pokemon_classification.data import pokemon_data, PokemonDataset
 from torch.profiler import profile, ProfilerActivity, tensorboard_trace_handler
 
 # Register custom class for safe deserialization
-torch.serialization.add_safe_globals({'PokemonDataset': PokemonDataset})
+torch.serialization.add_safe_globals({"PokemonDataset": PokemonDataset})
 
 print("Profiling model...")
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")

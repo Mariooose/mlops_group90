@@ -37,7 +37,7 @@ def main() -> None:
         raise ValueError(msg)
 
     st.title("Pokémon Classification")
-    #st.write("Upload a PNG of a pokemon and our amazing ML model will tell which pokemon it is!")
+    # st.write("Upload a PNG of a pokemon and our amazing ML model will tell which pokemon it is!")
     st.write("Who's that Pokémon?")
 
     uploaded_file = st.file_uploader("Upload an image", type=["png"])
@@ -62,10 +62,10 @@ def main() -> None:
             st.write("5: Prediction: ", predictions[4], "Confidence: ", probabilities[4])
 
             # make a nice bar chart
-            #data = {"Class": [f"Class {i}" for i in range(10)], "Probability": probabilities}
-            #df = pd.DataFrame(data)
-            #df.set_index("Class", inplace=True)
-            #st.bar_chart(df, y="Probability")
+            # data = {"Class": [f"Class {i}" for i in range(10)], "Probability": probabilities}
+            # df = pd.DataFrame(data)
+            # df.set_index("Class", inplace=True)
+            # st.bar_chart(df, y="Probability")
         else:
             st.write("Failed to get prediction")
 

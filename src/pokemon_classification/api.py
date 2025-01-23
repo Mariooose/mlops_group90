@@ -9,6 +9,7 @@ from PIL import Image
 from fastapi import FastAPI, File, UploadFile
 from src.pokemon_classification.model import resnet18
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Load and clean up model on startup and shutdown."""
@@ -17,7 +18,7 @@ async def lifespan(app: FastAPI):
 
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = resnet18.to(DEVICE)
-    model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE, weights_only=True ))
+    model.load_state_dict(torch.load("models/model.pth", map_location=DEVICE, weights_only=True))
 
     yield
 
@@ -32,7 +33,7 @@ app = FastAPI(lifespan=lifespan)
 async def caption(data: UploadFile = File(...)):
     """Classifies an image of a pokemon."""
     i_image = Image.open(data.file)
-    #if i_image.mode != "RGB":
+    # if i_image.mode != "RGB":
     #    i_image = i_image.convert(mode="RGB")
 
     i_image = np.array(i_image)
@@ -41,8 +42,8 @@ async def caption(data: UploadFile = File(...)):
     i_image = (i_image - i_image.mean()) / i_image.std()
     i_image = i_image.permute(2, 0, 1)
 
-    img = torch.zeros(1,4,128,128,dtype=torch.float)
-    img[0,:,:,:] = i_image
+    img = torch.zeros(1, 4, 128, 128, dtype=torch.float)
+    img[0, :, :, :] = i_image
 
     model.eval()
 

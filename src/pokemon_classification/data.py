@@ -1,7 +1,8 @@
 import os
 import pickle
 from pathlib import Path
-#test
+
+# test
 import pandas as pd
 import torch
 import typer
@@ -16,16 +17,18 @@ import os
 from my_logger import logger  # Import the logger
 
 
-#Read pokemon_to_int dictiionary that converts a label to a number
+# Read pokemon_to_int dictiionary that converts a label to a number
 logger.info("Reading pokemon_to_int.pkl")
 with open("pokemon_to_int.pkl", "rb") as f:
     pokemon_to_int = pickle.load(f)
+
 
 def normalize(images: torch.Tensor) -> torch.Tensor:
     """Normalize images."""
     return (images - images.mean()) / images.std()
 
-#creates a pd dataframe that has an imagepath associated with a label
+
+# creates a pd dataframe that has an imagepath associated with a label
 def create_dataframe(directory: Path) -> pd.DataFrame:
     "create a dataframe for data"
     data = []
@@ -35,7 +38,6 @@ def create_dataframe(directory: Path) -> pd.DataFrame:
             if file != ".DS_Store":
                 img_path = os.path.join(subdir, file)
                 data.append((img_path, label))
-
 
     df = pd.DataFrame(data, columns=["image_path", "label"])
     df = shuffle(df).reset_index(drop=True)
@@ -70,20 +72,19 @@ def preprocess(raw_data_path: Path, output_folder: Path, download_data=False) ->
     test_frame = create_dataframe(f"{raw_data_path}/test")
     train_frame = create_dataframe(f"{raw_data_path}/train")
     validation_frame = create_dataframe(f"{raw_data_path}/val")
-    frames = [test_frame,train_frame,validation_frame]
+    frames = [test_frame, train_frame, validation_frame]
 
     for j, data_type in enumerate(["test", "train", "validation"]):
-
-        #load data into one tensor and labels into one array
+        # load data into one tensor and labels into one array
         current_frame = frames[j]
         n = len(current_frame)
-        images = torch.zeros(n,4,128,128,dtype=torch.float)
+        images = torch.zeros(n, 4, 128, 128, dtype=torch.float)
         labels = []
         for i in range(n):
-            path,label = current_frame.iloc[i,:] #get image path and label from dataframe
-            img = decode_image(path).type(torch.float) #read the image and change datatype to float
-            images[i,:,:,:] = normalize(img) #normalize image and save it to the big tensor
-            labels.append(pokemon_to_int[label]) #convert label into number and append it to label
+            path, label = current_frame.iloc[i, :]  # get image path and label from dataframe
+            img = decode_image(path).type(torch.float)  # read the image and change datatype to float
+            images[i, :, :, :] = normalize(img)  # normalize image and save it to the big tensor
+            labels.append(pokemon_to_int[label])  # convert label into number and append it to label
 
         # Check if the folder exists if not creates it
         if not os.path.exists(output_folder):
@@ -91,34 +92,33 @@ def preprocess(raw_data_path: Path, output_folder: Path, download_data=False) ->
 
         # save data and labels
         torch.save(images, f"{output_folder}/{data_type}_images.pt")
-        torch.save(torch.tensor(labels), f"{output_folder}/{data_type}_target.pt") #convert labels into tensor
+        torch.save(torch.tensor(labels), f"{output_folder}/{data_type}_target.pt")  # convert labels into tensor
 
         print(f"processed {data_type}")
         logger.success(f"Processed {data_type}")
-
 
 
 def pokemon_data():
     """Return train and test datasets for pokemon classification."""
     logger.info("Loading data via pokemon_data()...")
 
-    train_images,train_target,test_images,test_target = None,None,None,None
-    #check if data is locally else fetch from GCP bucket
+    train_images, train_target, test_images, test_target = None, None, None, None
+    # check if data is locally else fetch from GCP bucket
     try:
         list_of_files = os.listdir("data/processed")
     except FileNotFoundError:
         list_of_files = []
 
-    if set(["train_images.pt","train_target.pt","test_images.pt","test_target.pt"]).issubset(list_of_files):
-        train_images = torch.load("data/processed/train_images.pt",weights_only=True)
-        train_target = torch.load("data/processed/train_target.pt",weights_only=True)
-        test_images = torch.load("data/processed/test_images.pt",weights_only=True)
-        test_target = torch.load("data/processed/test_target.pt",weights_only=True)
+    if set(["train_images.pt", "train_target.pt", "test_images.pt", "test_target.pt"]).issubset(list_of_files):
+        train_images = torch.load("data/processed/train_images.pt", weights_only=True)
+        train_target = torch.load("data/processed/train_target.pt", weights_only=True)
+        test_images = torch.load("data/processed/test_images.pt", weights_only=True)
+        test_target = torch.load("data/processed/test_target.pt", weights_only=True)
     else:
-        train_images = torch.load('/gcs/mlops_project90/data/processed/train_images.pt',weights_only=True)
-        train_target = torch.load("/gcs/mlops_project90/data/processed/train_target.pt",weights_only=True)
-        test_images = torch.load("/gcs/mlops_project90/data/processed/test_images.pt",weights_only=True)
-        test_target = torch.load("/gcs/mlops_project90/data/processed/test_target.pt",weights_only=True)
+        train_images = torch.load("/gcs/mlops_project90/data/processed/train_images.pt", weights_only=True)
+        train_target = torch.load("/gcs/mlops_project90/data/processed/train_target.pt", weights_only=True)
+        test_images = torch.load("/gcs/mlops_project90/data/processed/test_images.pt", weights_only=True)
+        test_target = torch.load("/gcs/mlops_project90/data/processed/test_target.pt", weights_only=True)
 
     train_set = torch.utils.data.TensorDataset(train_images, train_target)
     test_set = torch.utils.data.TensorDataset(test_images, test_target)

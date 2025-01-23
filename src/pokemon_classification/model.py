@@ -3,8 +3,9 @@ from torch import nn
 from src.my_logger import logger
 import timm
 
-#create model with output size 1000 and takes in 4 channels
-resnet18 = timm.create_model('resnet18', num_classes=1000, in_chans=4, pretrained=True) 
+# create model with output size 1000 and takes in 4 channels
+resnet18 = timm.create_model("resnet18", num_classes=1000, in_chans=4, pretrained=True)
+
 
 class MyAwesomeModel(nn.Module):
     """My awesome model."""
@@ -18,13 +19,13 @@ class MyAwesomeModel(nn.Module):
         self.fc1 = nn.Linear(25088, 1000)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        #raise error
+        # raise error
         if x.ndim != 4:
-            logger.error('Expected input to a 4D tensor')
-            raise ValueError('Expected input to a 4D tensor')
+            logger.error("Expected input to a 4D tensor")
+            raise ValueError("Expected input to a 4D tensor")
         if x.shape[1] != 4 or x.shape[2] != 128 or x.shape[3] != 128:
-            logger.error('Expected sample to have shape 4,128,128')
-            raise ValueError('Expected sample to have shape 4,128,128')
+            logger.error("Expected sample to have shape 4,128,128")
+            raise ValueError("Expected sample to have shape 4,128,128")
 
         """Forward pass."""
         x = torch.relu(self.conv1(x))
@@ -40,7 +41,7 @@ class MyAwesomeModel(nn.Module):
 
 
 if __name__ == "__main__":
-    #model = MyAwesomeModel()
+    # model = MyAwesomeModel()
     model = resnet18
     print(f"Model architecture: {model}")
     print(f"Number of parameters: {sum(p.numel() for p in model.parameters())}")

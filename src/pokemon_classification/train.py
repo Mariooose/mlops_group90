@@ -12,15 +12,18 @@ import wandb
 
 
 from dotenv import load_dotenv
+
 load_dotenv()
 import os
+
 api_key = os.getenv("WANDB_API_KEY")
 wandb_project = os.getenv("WANDB_PROJECT")
 wandb_entity = os.getenv("WANDB_ENTITY")
 
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
-#DEVICE = torch.device("cpu")
+# DEVICE = torch.device("cpu")
+
 
 def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: int = 0) -> None:
     """Train a model on pokemon."""
@@ -30,15 +33,12 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: i
 
     if run_wandb:
         run = wandb.init(
-            project=wandb_project,
-            config={"lr": lr, "batch_size": batch_size, "epochs": epochs},
-            entity=wandb_entity
+            project=wandb_project, config={"lr": lr, "batch_size": batch_size, "epochs": epochs}, entity=wandb_entity
         )
 
     logger.debug(f"{lr=}, {batch_size=}, {epochs=}")
 
-
-    logger.info('Fetching model and training data')
+    logger.info("Fetching model and training data")
     model = resnet18.to(DEVICE)
     train_set, _ = pokemon_data()
 
@@ -46,7 +46,6 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: i
 
     loss_fn = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-
 
     statistics = {"train_loss": [], "train_accuracy": []}
     for epoch in range(epochs):
@@ -81,9 +80,8 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: i
                     # add a plot of histogram of the gradients
                     grads = torch.cat([p.grad.flatten() for p in model.parameters() if p.grad is not None], 0)
                     wandb.log({"gradients": wandb.Histogram(grads.cpu())})
-           
-            logger.success(f'Epoch {epoch} done')
 
+            logger.success(f"Epoch {epoch} done")
 
         if run_wandb:
             # add a custom matplotlib plot of the ROC curves
@@ -101,7 +99,7 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: i
                 )
 
             wandb.log({"roc": wandb.Image(plt)})
-            #wandb.plot({"roc": plt})
+            # wandb.plot({"roc": plt})
             plt.close()  # close the plot to avoid memory leaks and overlapping figures
 
     if run_wandb:
@@ -121,14 +119,13 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: i
         artifact.add_file("model.pth")
         run.log_artifact(artifact)
 
-
     print("Training complete")
     logger.success("Training complete")
 
     try:
         torch.save(model.state_dict(), "models/model.pth")
     except:
-        logger.error('Failed to save model')
+        logger.error("Failed to save model")
     fig, axs = plt.subplots(1, 2, figsize=(15, 5))
     axs[0].plot(statistics["train_loss"])
     axs[0].set_title("Train loss")
@@ -139,6 +136,7 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10, run_wandb: i
 
 def main():
     typer.run(train)
+
 
 if __name__ == "__main__":
     main()
