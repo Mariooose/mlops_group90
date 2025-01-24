@@ -57,6 +57,7 @@ def predict_pokemon(image_path: str) -> str:
 
     img = img.to(DEVICE)
     y = model(img)
+    y = torch.softmax(y, dim=1)
     y_np = y.cpu().detach().numpy()
 
     y_np = y_np.flatten()
@@ -82,17 +83,17 @@ async def root():
 async def classify_pokemon(data: UploadFile = File(...)):
     """Classify image endpoint"""
 
-    try:
-        contents = await data.read(-1)
+    #try:
+    contents = await data.read(-1)
 
-        async with await anyio.open_file(data.filename, "wb") as f:
-            await f.write(contents)
+    async with await anyio.open_file(data.filename, "wb") as f:
+        await f.write(contents)
 
-        preds, probs = predict_pokemon(data.filename)
+    preds, probs = predict_pokemon(data.filename)
 
-        return {"filename": data.filename, "pred1": preds, "prob1": probs}
-    except Exception as e:
-        raise HTTPException(status_code=500) from e
+    return {"filename": data.filename, "pred1": preds, "prob1": probs}
+    #except Exception as e:
+    #    raise HTTPException(status_code=500) from e
 
 
 if __name__ == "__main__":
