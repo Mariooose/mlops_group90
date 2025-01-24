@@ -16,4 +16,3 @@ def test_error_on_wrong_shape():
     model = resnet18
     with pytest.raises(RuntimeError):
         model(torch.randn(1, 2, 3))
-
