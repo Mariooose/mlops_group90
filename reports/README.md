@@ -446,7 +446,7 @@ We did not implement any monitoring besides the data that is provided by the GCP
 >
 > Answer:
 
-At time of writing we have spent 6.06 dollars on our project in Google cloud, under which we have run all the services we used during the project. The biggest consumer was Vertex AI which used 3.86 dollars, and then Cloud Storage, Compute Engine, Artifact Registry, and then others. We have generally found that it was useful to use cloud services, but many of them did take some substantial time to set up. It makes sense that these services cost money but it is a bit new for us as many services nowadays are some degree of “free”. 
+At time of writing we have spent around 10 dollars on our project in Google cloud, under which we have run all the services we used during the project. The biggest consumer was Vertex AI which used 4.74 dollars, and then Cloud Storage, Compute Engine, Artifact Registry, and then others. We have generally found that it was useful to use cloud services, but many of them did take some substantial time to set up. It makes sense that these services cost money but it is a bit new for us as many services nowadays are some degree of “free”. 
 
 ### Question 28
 
